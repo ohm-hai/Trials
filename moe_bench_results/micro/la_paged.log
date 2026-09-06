@@ -1,0 +1,124 @@
+=== LA paged decode ===
+started 2026-09-05T21:26:17+00:00
+----- B=1 hq=32 hk=8 sq=512 bf16 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+bench_la_paged_decode:
+                    OP  BS  HQ  HK  SEQ_LEN  HEAD_DIM  Time_(ms)
+0       PagedAttention   1  32  32      512       128   0.142151
+1       PagedAttention   1  32  32     1024       128   0.187222
+2       PagedAttention   1  32  32     2048       128   0.258716
+3       PagedAttention   1  32  32     4096       128   0.258301
+4       PagedAttention   1  32  32     8192       128   0.253600
+5       PagedAttention   1  32  32    16384       128   0.253995
+6       PagedAttention   1  32  32    32768       128   0.277709
+7   LeanAttentionPaged   1  32  32      512       128   0.046316
+8   LeanAttentionPaged   1  32  32     1024       128   0.035573
+9   LeanAttentionPaged   1  32  32     2048       128   0.042129
+10  LeanAttentionPaged   1  32  32     4096       128   0.059066
+11  LeanAttentionPaged   1  32  32     8192       128   0.092146
+12  LeanAttentionPaged   1  32  32    16384       128   0.159034
+13  LeanAttentionPaged   1  32  32    32768       128   0.286472
+----- B=1 hq=32 hk=8 sq=8192 bf16 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+bench_la_paged_decode:
+                    OP  BS  HQ  HK  SEQ_LEN  HEAD_DIM  Time_(ms)
+0       PagedAttention   1  32  32      512       128   0.146868
+1       PagedAttention   1  32  32     1024       128   0.191814
+2       PagedAttention   1  32  32     2048       128   0.271400
+3       PagedAttention   1  32  32     4096       128   0.258210
+4       PagedAttention   1  32  32     8192       128   0.255062
+5       PagedAttention   1  32  32    16384       128   0.257387
+6       PagedAttention   1  32  32    32768       128   0.288886
+7   LeanAttentionPaged   1  32  32      512       128   0.046091
+8   LeanAttentionPaged   1  32  32     1024       128   0.039812
+9   LeanAttentionPaged   1  32  32     2048       128   0.042622
+10  LeanAttentionPaged   1  32  32     4096       128   0.058757
+11  LeanAttentionPaged   1  32  32     8192       128   0.092623
+12  LeanAttentionPaged   1  32  32    16384       128   0.159907
+13  LeanAttentionPaged   1  32  32    32768       128   0.286075
+----- B=8 hq=32 hk=8 sq=512 bf16 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+bench_la_paged_decode:
+                    OP  BS  HQ  HK  SEQ_LEN  HEAD_DIM  Time_(ms)
+0       PagedAttention   8  32  32      512       128   0.137170
+1       PagedAttention   8  32  32     1024       128   0.171262
+2       PagedAttention   8  32  32     2048       128   0.271225
+3       PagedAttention   8  32  32     4096       128   0.292938
+4       PagedAttention   8  32  32     8192       128   0.348854
+5       PagedAttention   8  32  32    16384       128   0.454505
+6       PagedAttention   8  32  32    32768       128   0.675783
+7   LeanAttentionPaged   8  32  32      512       128   0.064243
+8   LeanAttentionPaged   8  32  32     1024       128   0.110178
+9   LeanAttentionPaged   8  32  32     2048       128   0.204338
+10  LeanAttentionPaged   8  32  32     4096       128   0.294192
+11  LeanAttentionPaged   8  32  32     8192       128   0.562236
+12  LeanAttentionPaged   8  32  32    16384       128   1.191473
+13  LeanAttentionPaged   8  32  32    32768       128   2.196845
+----- B=8 hq=32 hk=8 sq=8192 bf16 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+bench_la_paged_decode:
+                    OP  BS  HQ  HK  SEQ_LEN  HEAD_DIM  Time_(ms)
+0       PagedAttention   8  32  32      512       128   0.132327
+1       PagedAttention   8  32  32     1024       128   0.157864
+2       PagedAttention   8  32  32     2048       128   0.259963
+3       PagedAttention   8  32  32     4096       128   0.281079
+4       PagedAttention   8  32  32     8192       128   0.337801
+5       PagedAttention   8  32  32    16384       128   0.443817
+6       PagedAttention   8  32  32    32768       128   0.663136
+7   LeanAttentionPaged   8  32  32      512       128   0.063976
+8   LeanAttentionPaged   8  32  32     1024       128   0.095736
+9   LeanAttentionPaged   8  32  32     2048       128   0.164344
+10  LeanAttentionPaged   8  32  32     4096       128   0.294159
+11  LeanAttentionPaged   8  32  32     8192       128   0.562229
+12  LeanAttentionPaged   8  32  32    16384       128   1.087515
+13  LeanAttentionPaged   8  32  32    32768       128   2.606902
+----- B=64 hq=32 hk=8 sq=512 bf16 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+bench_la_paged_decode:
+                    OP  BS  HQ  HK  SEQ_LEN  HEAD_DIM  Time_(ms)
+0       PagedAttention  64  32  32      512       128   0.171108
+1       PagedAttention  64  32  32     1024       128   0.239998
+2       PagedAttention  64  32  32     2048       128   0.515049
+3       PagedAttention  64  32  32     4096       128   0.613613
+4       PagedAttention  64  32  32     8192       128   1.135724
+5       PagedAttention  64  32  32    16384       128   1.975330
+6       PagedAttention  64  32  32    32768       128   3.749441
+7   LeanAttentionPaged  64  32  32      512       128   0.339651
+8   LeanAttentionPaged  64  32  32     1024       128   0.606528
+9   LeanAttentionPaged  64  32  32     2048       128   1.125539
+10  LeanAttentionPaged  64  32  32     4096       128   2.233086
+11  LeanAttentionPaged  64  32  32     8192       128   4.452894
+12  LeanAttentionPaged  64  32  32    16384       128   8.971222
+13  LeanAttentionPaged  64  32  32    32768       128  18.173232
+----- B=64 hq=32 hk=8 sq=8192 bf16 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+bench_la_paged_decode:
+                    OP  BS  HQ  HK  SEQ_LEN  HEAD_DIM  Time_(ms)
+0       PagedAttention  64  32  32      512       128   0.173266
+1       PagedAttention  64  32  32     1024       128   0.237745
+2       PagedAttention  64  32  32     2048       128   0.354669
+3       PagedAttention  64  32  32     4096       128   0.615846
+4       PagedAttention  64  32  32     8192       128   1.137345
+5       PagedAttention  64  32  32    16384       128   1.977755
+6       PagedAttention  64  32  32    32768       128   3.717822
+7   LeanAttentionPaged  64  32  32      512       128   0.339236
+8   LeanAttentionPaged  64  32  32     1024       128   0.605238
+9   LeanAttentionPaged  64  32  32     2048       128   1.125828
+10  LeanAttentionPaged  64  32  32     4096       128   2.235525
+11  LeanAttentionPaged  64  32  32     8192       128   4.451996
+12  LeanAttentionPaged  64  32  32    16384       128   8.982162
+13  LeanAttentionPaged  64  32  32    32768       128  18.139496
+finished 2026-09-05T21:27:26+00:00
+DONE_LA_PAGED

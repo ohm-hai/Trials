@@ -1,0 +1,24 @@
+# GLM-5.2 bf16 no-quant MoE — aiter fused_moe (test_fmoe_16_bit, g1u0, gfx950, MI355X VF, GPU0)
+# hidden=6144 inter=2048 E=256 topk=8 No-quant g1u0 silu
+# NOTE: aiter fused bf16 no-quant asm kernel is NOT supported on gfx950 (MI355X) —
+#       test_moe.py:185-193 explicitly skips it ("only runs on gfx942"=MI300).
+#       g1u1 bf16 is also unsupported ("asm g1u1 only support quant/smoothquant Now").
+#       => asm_avg = 9999.00 (sentinel, NOT a real measurement) for every M.
+#       Only the torch (naive pytorch reference) latency is valid here. It serves as the
+#       "unoptimized bf16" baseline against which FP8's fused kernel is ~100x faster.
+#       For a fair fused-kernel-vs-fused-kernel comparison, use FP8 vs int8 (both have
+#       fused kernels on gfx950) — see glm52_fp8_moe.csv and glm52_int8_moe.csv.
+M,asm_avg_us,torch_avg_us,uplift_pct,asm_available
+1,9999.00,21695.29,117.0,NO_gfx950_unsupported
+2,9999.00,22716.74,127.2,NO_gfx950_unsupported
+4,9999.00,24396.88,144.0,NO_gfx950_unsupported
+8,9999.00,26666.11,166.7,NO_gfx950_unsupported
+16,9999.00,33054.33,230.6,NO_gfx950_unsupported
+32,9999.00,39601.95,296.1,NO_gfx950_unsupported
+64,9999.00,44993.65,350.0,NO_gfx950_unsupported
+128,9999.00,48504.73,385.1,NO_gfx950_unsupported
+256,9999.00,51420.12,414.3,NO_gfx950_unsupported
+512,9999.00,52519.36,425.2,NO_gfx950_unsupported
+1024,9999.00,52927.53,429.3,NO_gfx950_unsupported
+2048,9999.00,59203.94,492.1,NO_gfx950_unsupported
+4096,9999.00,69213.91,592.2,NO_gfx950_unsupported

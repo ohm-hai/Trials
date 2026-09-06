@@ -1,0 +1,15 @@
+OP,BS,HQ,HK,SEQ_LEN,HEAD_DIM,Time_(ms)
+PagedAttention,1,32,32,512,128,0.142151
+PagedAttention,1,32,32,1024,128,0.187222
+PagedAttention,1,32,32,2048,128,0.258716
+PagedAttention,1,32,32,4096,128,0.258301
+PagedAttention,1,32,32,8192,128,0.253600
+PagedAttention,1,32,32,16384,128,0.253995
+PagedAttention,1,32,32,32768,128,0.277709
+LeanAttentionPaged,1,32,32,512,128,0.046316
+LeanAttentionPaged,1,32,32,1024,128,0.035573
+LeanAttentionPaged,1,32,32,2048,128,0.042129
+LeanAttentionPaged,1,32,32,4096,128,0.059066
+LeanAttentionPaged,1,32,32,8192,128,0.092146
+LeanAttentionPaged,1,32,32,16384,128,0.159034
+LeanAttentionPaged,1,32,32,32768,128,0.286472

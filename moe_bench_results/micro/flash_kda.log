@@ -1,0 +1,23 @@
+=== FlashKDA default sweep ===
+started 2026-09-05T21:25:46+00:00
+[aiter] Triton ops only: CK and HIP ops (and their JIT build) are skipped.
+[aiter.ops.triton._triton_kernels.gated_delta_rule.gated_delta_rule_utils] Current Python version 3.10 is below the recommended 3.11 version. It is recommended to upgrade to Python 3.11 or higher for the best experience.
+   B      T    H    K    V    Time(ms)    TFLOPS    BW(GB/s)
+------------------------------------------------------------
+   1  16384    8  128  128      0.3776     28.44       445.0
+   1  16384   12  128  128      0.5312     30.32       474.5
+   1  16384   64  128  128      1.9760     43.47       680.3
+   1  16384   96  128  128      2.4585     52.41       820.2
+   1   8192   12  128  128      0.3244     24.82       388.5
+   1   8192   16  128  128      0.3508     30.61       479.0
+   1   8192   32  128  128      0.6212     34.57       541.0
+   1   8192   64  128  128      1.0062     42.69       668.0
+   1  32768  128  128  128      5.7287     59.98       938.6
+   1  65536   12  128  128      1.8282     35.24       551.5
+   2  16384   32  128  128      1.9764     43.46       680.2
+   4   4096   16  128  128      0.5302     40.50       633.9
+   8   2048   16  128  128      0.3932     54.62       854.7
+
+Saved to bench_flash_kda.csv
+finished 2026-09-05T21:26:17+00:00
+DONE_FLASH_KDA

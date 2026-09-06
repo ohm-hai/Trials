@@ -1,0 +1,346 @@
+=== rocprof FP8 MoE L2/HBM ===
+started 2026-09-05T21:31:37+00:00
+===== M=8 =====
+
+[0;31mWARNING: We are phasing out development and support for roctracer/rocprofiler/rocprof/rocprofv2 in favor of rocprofiler-sdk/rocprofv3 in upcoming ROCm releases. Going forward, only critical defect fixes will be addressed for older versions of profiling tools and libraries. We encourage all users to upgrade to the latest version, rocprofiler-sdk library and rocprofv3 tool, to ensure continued support and access to new features.[0m
+
+RPL: on '260905_213137' from '/opt/rocm-7.0.0' in '/scratch/aiter'
+/opt/rocm/bin/rocprof: Error: Wrong option '--'
+
+ROCm Profiling Library (RPL) run script, a part of ROCprofiler library package.
+Full path: /opt/rocm-7.0.0/bin/rocprof
+Metrics definition: /opt/rocm-7.0.0/lib/rocprofiler/metrics.xml
+
+Usage:
+  rocprof [-h] [--list-basic] [--list-derived] [-i <input .txt/.xml file>] [-o <output CSV file>] <app command line>
+
+Options:
+  -h - this help
+  --tool-version <1|2> - to use specific version of rocprof tool, by default v1 is used
+            1 - rocprofiler tool v1
+            2 - rocprofiler tool v2
+  --verbose - verbose mode, dumping all base counters used in the input metrics
+  --list-basic - to print the list of basic HW counters
+  --list-derived - to print the list of derived metrics with formulas
+  --cmd-qts <on|off> - quoting profiled cmd line [on]
+
+  -i <.txt|.xml file> - input file
+      Input file .txt format, automatically rerun application for every profiling features line:
+
+        # Perf counters group 1
+        pmc : Wavefronts VALUInsts SALUInsts SFetchInsts FlatVMemInsts LDSInsts FlatLDSInsts GDSInsts VALUUtilization FetchSize
+        # Perf counters group 2
+        pmc : WriteSize L2CacheHit
+        # Filter by dispatches range, GPU index and kernel names
+        # supported range formats: "3:9", "3:", "3"
+        range: 1 : 4
+        gpu: 0 1 2 3
+        kernel: simple Pass1 simpleConvolutionPass2
+
+      Input file .xml format, for single profiling run:
+
+        # Metrics list definition, also the form "<block-name>:<event-id>" can be used
+        # All defined metrics can be found in the 'metrics.xml'
+        # There are basic metrics for raw HW counters and high-level metrics for derived counters
+        <metric name=SQ:4,SQ_WAVES,VFetchInsts
+        ></metric>
+
+        # Filter by dispatches range, GPU index and kernel names
+        <metric
+          # range formats: "3:9", "3:", "3"
+          range=""
+          # list of gpu indexes "0,1,2,3"
+          gpu_index=""
+          # list of matched sub-strings "Simple1,Conv1,SimpleConvolution"
+          kernel=""
+        ></metric>
+
+  -o <output file> - output CSV file [<input file base>.csv]
+  -d <data directory> - directory where profiler store profiling data including traces [/tmp]
+      The data directory is automatically removed if it is matching the default temporary directory.
+  -t <temporary directory> - to change the temporary directory [/tmp]
+      By changing the temporary directory you can prevent removing the profiling data from /tmp or enable removing from not '/tmp' directory.
+  -m <metric file> - file defining custom metrics to use in-place of defaults.
+
+  --basenames <on|off> - to turn on/off truncating of the kernel full function names till the base ones [off]
+  --timestamp <on|off> - to turn on/off the kernel dispatches timestamps, dispatch/begin/end/complete during kernel profiling [off]
+  --ctx-wait <on|off> - to wait for outstanding contexts on profiler exit [on]
+  --ctx-limit <max number> - maximum number of outstanding contexts [0 - unlimited]
+  --heartbeat <rate sec> - to print progress heartbeats [0 - disabled]
+  --obj-tracking <on|off> - to turn on/off kernels code objects tracking [on]
+    To support V3 code object
+
+  --stats - generating kernel execution stats, file <output name>.stats.csv
+
+  --roctx-trace - to enable rocTX application code annotation trace, "Markers and Ranges" JSON trace section.
+  --hip-trace - to trace HIP, generates API execution stats and JSON file chrome-tracing compatible
+  --hsa-trace - to trace HSA, generates API execution stats and JSON file chrome-tracing compatible
+  --sys-trace - to trace HIP/HSA APIs and GPU activity, generates stats and JSON trace chrome-tracing compatible
+    '--hsa-trace' can be used in addition to select activity tracing from HSA (ROCr runtime) level
+    Generated files: <output name>.<domain>_stats.txt <output name>.json
+    Traced API list can be set by input .txt or .xml files.
+    Input .txt:
+      hsa: hsa_queue_create hsa_amd_memory_pool_allocate
+    Input .xml:
+      <trace name="HSA">
+        <parameters list="hsa_queue_create, hsa_amd_memory_pool_allocate">
+        </parameters>
+      </trace>
+
+  --roctx-rename - to rename kernels with their enclosing rocTX range's message.
+
+  --trace-start <on|off> - to enable tracing on start [on]
+  --trace-period <dealy:length:rate> - to enable trace with initial delay, with periodic sample length and rate
+    Supported time formats: <number(m|s|ms|us)>
+  --flush-rate <rate> - to enable trace flush rate (time period)
+    Supported time formats: <number(m|s|ms|us)>
+  --parallel-kernels - to enable concurrent kernels
+
+Configuration file:
+  You can set your parameters defaults preferences in the configuration file 'rpl_rc.xml'. The search path sequence: .:/root:<installation directory>
+  First the configuration file is searched in the current directory, then in the current user's home directory, and then in the installation directory.
+  Configurable options: 'basenames', 'timestamp', 'ctx-limit', 'heartbeat', 'obj-tracking'.
+  An example of 'rpl_rc.xml':
+    <defaults
+      basenames=off
+      timestamp=off
+      ctx-limit=0
+      heartbeat=0
+      obj-tracking=off
+    ></defaults>
+
+  --merge-traces - Script for aggregating results from multiple rocprofiler out directries.
+                   Usage: if running with rocprof
+                   rocprof --merge-traces -o <outputdir> [<inputdir>...]
+
+--- results CSV M=8 ---
+===== M=64 =====
+
+[0;31mWARNING: We are phasing out development and support for roctracer/rocprofiler/rocprof/rocprofv2 in favor of rocprofiler-sdk/rocprofv3 in upcoming ROCm releases. Going forward, only critical defect fixes will be addressed for older versions of profiling tools and libraries. We encourage all users to upgrade to the latest version, rocprofiler-sdk library and rocprofv3 tool, to ensure continued support and access to new features.[0m
+
+RPL: on '260905_213137' from '/opt/rocm-7.0.0' in '/scratch/aiter'
+/opt/rocm/bin/rocprof: Error: Wrong option '--'
+
+ROCm Profiling Library (RPL) run script, a part of ROCprofiler library package.
+Full path: /opt/rocm-7.0.0/bin/rocprof
+Metrics definition: /opt/rocm-7.0.0/lib/rocprofiler/metrics.xml
+
+Usage:
+  rocprof [-h] [--list-basic] [--list-derived] [-i <input .txt/.xml file>] [-o <output CSV file>] <app command line>
+
+Options:
+  -h - this help
+  --tool-version <1|2> - to use specific version of rocprof tool, by default v1 is used
+            1 - rocprofiler tool v1
+            2 - rocprofiler tool v2
+  --verbose - verbose mode, dumping all base counters used in the input metrics
+  --list-basic - to print the list of basic HW counters
+  --list-derived - to print the list of derived metrics with formulas
+  --cmd-qts <on|off> - quoting profiled cmd line [on]
+
+  -i <.txt|.xml file> - input file
+      Input file .txt format, automatically rerun application for every profiling features line:
+
+        # Perf counters group 1
+        pmc : Wavefronts VALUInsts SALUInsts SFetchInsts FlatVMemInsts LDSInsts FlatLDSInsts GDSInsts VALUUtilization FetchSize
+        # Perf counters group 2
+        pmc : WriteSize L2CacheHit
+        # Filter by dispatches range, GPU index and kernel names
+        # supported range formats: "3:9", "3:", "3"
+        range: 1 : 4
+        gpu: 0 1 2 3
+        kernel: simple Pass1 simpleConvolutionPass2
+
+      Input file .xml format, for single profiling run:
+
+        # Metrics list definition, also the form "<block-name>:<event-id>" can be used
+        # All defined metrics can be found in the 'metrics.xml'
+        # There are basic metrics for raw HW counters and high-level metrics for derived counters
+        <metric name=SQ:4,SQ_WAVES,VFetchInsts
+        ></metric>
+
+        # Filter by dispatches range, GPU index and kernel names
+        <metric
+          # range formats: "3:9", "3:", "3"
+          range=""
+          # list of gpu indexes "0,1,2,3"
+          gpu_index=""
+          # list of matched sub-strings "Simple1,Conv1,SimpleConvolution"
+          kernel=""
+        ></metric>
+
+  -o <output file> - output CSV file [<input file base>.csv]
+  -d <data directory> - directory where profiler store profiling data including traces [/tmp]
+      The data directory is automatically removed if it is matching the default temporary directory.
+  -t <temporary directory> - to change the temporary directory [/tmp]
+      By changing the temporary directory you can prevent removing the profiling data from /tmp or enable removing from not '/tmp' directory.
+  -m <metric file> - file defining custom metrics to use in-place of defaults.
+
+  --basenames <on|off> - to turn on/off truncating of the kernel full function names till the base ones [off]
+  --timestamp <on|off> - to turn on/off the kernel dispatches timestamps, dispatch/begin/end/complete during kernel profiling [off]
+  --ctx-wait <on|off> - to wait for outstanding contexts on profiler exit [on]
+  --ctx-limit <max number> - maximum number of outstanding contexts [0 - unlimited]
+  --heartbeat <rate sec> - to print progress heartbeats [0 - disabled]
+  --obj-tracking <on|off> - to turn on/off kernels code objects tracking [on]
+    To support V3 code object
+
+  --stats - generating kernel execution stats, file <output name>.stats.csv
+
+  --roctx-trace - to enable rocTX application code annotation trace, "Markers and Ranges" JSON trace section.
+  --hip-trace - to trace HIP, generates API execution stats and JSON file chrome-tracing compatible
+  --hsa-trace - to trace HSA, generates API execution stats and JSON file chrome-tracing compatible
+  --sys-trace - to trace HIP/HSA APIs and GPU activity, generates stats and JSON trace chrome-tracing compatible
+    '--hsa-trace' can be used in addition to select activity tracing from HSA (ROCr runtime) level
+    Generated files: <output name>.<domain>_stats.txt <output name>.json
+    Traced API list can be set by input .txt or .xml files.
+    Input .txt:
+      hsa: hsa_queue_create hsa_amd_memory_pool_allocate
+    Input .xml:
+      <trace name="HSA">
+        <parameters list="hsa_queue_create, hsa_amd_memory_pool_allocate">
+        </parameters>
+      </trace>
+
+  --roctx-rename - to rename kernels with their enclosing rocTX range's message.
+
+  --trace-start <on|off> - to enable tracing on start [on]
+  --trace-period <dealy:length:rate> - to enable trace with initial delay, with periodic sample length and rate
+    Supported time formats: <number(m|s|ms|us)>
+  --flush-rate <rate> - to enable trace flush rate (time period)
+    Supported time formats: <number(m|s|ms|us)>
+  --parallel-kernels - to enable concurrent kernels
+
+Configuration file:
+  You can set your parameters defaults preferences in the configuration file 'rpl_rc.xml'. The search path sequence: .:/root:<installation directory>
+  First the configuration file is searched in the current directory, then in the current user's home directory, and then in the installation directory.
+  Configurable options: 'basenames', 'timestamp', 'ctx-limit', 'heartbeat', 'obj-tracking'.
+  An example of 'rpl_rc.xml':
+    <defaults
+      basenames=off
+      timestamp=off
+      ctx-limit=0
+      heartbeat=0
+      obj-tracking=off
+    ></defaults>
+
+  --merge-traces - Script for aggregating results from multiple rocprofiler out directries.
+                   Usage: if running with rocprof
+                   rocprof --merge-traces -o <outputdir> [<inputdir>...]
+
+--- results CSV M=64 ---
+===== M=512 =====
+
+[0;31mWARNING: We are phasing out development and support for roctracer/rocprofiler/rocprof/rocprofv2 in favor of rocprofiler-sdk/rocprofv3 in upcoming ROCm releases. Going forward, only critical defect fixes will be addressed for older versions of profiling tools and libraries. We encourage all users to upgrade to the latest version, rocprofiler-sdk library and rocprofv3 tool, to ensure continued support and access to new features.[0m
+
+RPL: on '260905_213138' from '/opt/rocm-7.0.0' in '/scratch/aiter'
+/opt/rocm/bin/rocprof: Error: Wrong option '--'
+
+ROCm Profiling Library (RPL) run script, a part of ROCprofiler library package.
+Full path: /opt/rocm-7.0.0/bin/rocprof
+Metrics definition: /opt/rocm-7.0.0/lib/rocprofiler/metrics.xml
+
+Usage:
+  rocprof [-h] [--list-basic] [--list-derived] [-i <input .txt/.xml file>] [-o <output CSV file>] <app command line>
+
+Options:
+  -h - this help
+  --tool-version <1|2> - to use specific version of rocprof tool, by default v1 is used
+            1 - rocprofiler tool v1
+            2 - rocprofiler tool v2
+  --verbose - verbose mode, dumping all base counters used in the input metrics
+  --list-basic - to print the list of basic HW counters
+  --list-derived - to print the list of derived metrics with formulas
+  --cmd-qts <on|off> - quoting profiled cmd line [on]
+
+  -i <.txt|.xml file> - input file
+      Input file .txt format, automatically rerun application for every profiling features line:
+
+        # Perf counters group 1
+        pmc : Wavefronts VALUInsts SALUInsts SFetchInsts FlatVMemInsts LDSInsts FlatLDSInsts GDSInsts VALUUtilization FetchSize
+        # Perf counters group 2
+        pmc : WriteSize L2CacheHit
+        # Filter by dispatches range, GPU index and kernel names
+        # supported range formats: "3:9", "3:", "3"
+        range: 1 : 4
+        gpu: 0 1 2 3
+        kernel: simple Pass1 simpleConvolutionPass2
+
+      Input file .xml format, for single profiling run:
+
+        # Metrics list definition, also the form "<block-name>:<event-id>" can be used
+        # All defined metrics can be found in the 'metrics.xml'
+        # There are basic metrics for raw HW counters and high-level metrics for derived counters
+        <metric name=SQ:4,SQ_WAVES,VFetchInsts
+        ></metric>
+
+        # Filter by dispatches range, GPU index and kernel names
+        <metric
+          # range formats: "3:9", "3:", "3"
+          range=""
+          # list of gpu indexes "0,1,2,3"
+          gpu_index=""
+          # list of matched sub-strings "Simple1,Conv1,SimpleConvolution"
+          kernel=""
+        ></metric>
+
+  -o <output file> - output CSV file [<input file base>.csv]
+  -d <data directory> - directory where profiler store profiling data including traces [/tmp]
+      The data directory is automatically removed if it is matching the default temporary directory.
+  -t <temporary directory> - to change the temporary directory [/tmp]
+      By changing the temporary directory you can prevent removing the profiling data from /tmp or enable removing from not '/tmp' directory.
+  -m <metric file> - file defining custom metrics to use in-place of defaults.
+
+  --basenames <on|off> - to turn on/off truncating of the kernel full function names till the base ones [off]
+  --timestamp <on|off> - to turn on/off the kernel dispatches timestamps, dispatch/begin/end/complete during kernel profiling [off]
+  --ctx-wait <on|off> - to wait for outstanding contexts on profiler exit [on]
+  --ctx-limit <max number> - maximum number of outstanding contexts [0 - unlimited]
+  --heartbeat <rate sec> - to print progress heartbeats [0 - disabled]
+  --obj-tracking <on|off> - to turn on/off kernels code objects tracking [on]
+    To support V3 code object
+
+  --stats - generating kernel execution stats, file <output name>.stats.csv
+
+  --roctx-trace - to enable rocTX application code annotation trace, "Markers and Ranges" JSON trace section.
+  --hip-trace - to trace HIP, generates API execution stats and JSON file chrome-tracing compatible
+  --hsa-trace - to trace HSA, generates API execution stats and JSON file chrome-tracing compatible
+  --sys-trace - to trace HIP/HSA APIs and GPU activity, generates stats and JSON trace chrome-tracing compatible
+    '--hsa-trace' can be used in addition to select activity tracing from HSA (ROCr runtime) level
+    Generated files: <output name>.<domain>_stats.txt <output name>.json
+    Traced API list can be set by input .txt or .xml files.
+    Input .txt:
+      hsa: hsa_queue_create hsa_amd_memory_pool_allocate
+    Input .xml:
+      <trace name="HSA">
+        <parameters list="hsa_queue_create, hsa_amd_memory_pool_allocate">
+        </parameters>
+      </trace>
+
+  --roctx-rename - to rename kernels with their enclosing rocTX range's message.
+
+  --trace-start <on|off> - to enable tracing on start [on]
+  --trace-period <dealy:length:rate> - to enable trace with initial delay, with periodic sample length and rate
+    Supported time formats: <number(m|s|ms|us)>
+  --flush-rate <rate> - to enable trace flush rate (time period)
+    Supported time formats: <number(m|s|ms|us)>
+  --parallel-kernels - to enable concurrent kernels
+
+Configuration file:
+  You can set your parameters defaults preferences in the configuration file 'rpl_rc.xml'. The search path sequence: .:/root:<installation directory>
+  First the configuration file is searched in the current directory, then in the current user's home directory, and then in the installation directory.
+  Configurable options: 'basenames', 'timestamp', 'ctx-limit', 'heartbeat', 'obj-tracking'.
+  An example of 'rpl_rc.xml':
+    <defaults
+      basenames=off
+      timestamp=off
+      ctx-limit=0
+      heartbeat=0
+      obj-tracking=off
+    ></defaults>
+
+  --merge-traces - Script for aggregating results from multiple rocprofiler out directries.
+                   Usage: if running with rocprof
+                   rocprof --merge-traces -o <outputdir> [<inputdir>...]
+
+--- results CSV M=512 ---
+finished 2026-09-05T21:31:38+00:00
+DONE_ROCPROF_MOE

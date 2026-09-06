@@ -1,0 +1,174 @@
+=== GLM-5.2 bf16 no-quant MoE (g1u0) sweep ===
+hidden=6144 inter=2048 E=256 topk=8 No-quant g1u0 silu
+started 2026-09-05T21:25:46+00:00
+----- M=1 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:25:52.944236064 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] [perf] token=1, quant=No, model_dim=6144, inter_dim=2048, E=256, topk=8, dtype: torch.bfloat16, torch_avg: 21695.29 us, asm_avg:  9999.00 us, uplift: 117.0%[checkAllclose atol=100 rtol=0.01 [32mpassed~[0m]
+
+Running test: test_fmoe_16_bit
+test test_fmoe 16 bit
+
+g1u0 no quant
+skip asm g1u0 no-quant on gfx950: only runs on gfx942
+----- M=2 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:26:00.856257817 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] [perf] token=2, quant=No, model_dim=6144, inter_dim=2048, E=256, topk=8, dtype: torch.bfloat16, torch_avg: 22716.74 us, asm_avg:  9999.00 us, uplift: 127.2%[checkAllclose atol=100 rtol=0.01 [32mpassed~[0m]
+
+Running test: test_fmoe_16_bit
+test test_fmoe 16 bit
+
+g1u0 no quant
+skip asm g1u0 no-quant on gfx950: only runs on gfx942
+----- M=4 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:26:08.566466286 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] [perf] token=4, quant=No, model_dim=6144, inter_dim=2048, E=256, topk=8, dtype: torch.bfloat16, torch_avg: 24396.88 us, asm_avg:  9999.00 us, uplift: 144.0%[checkAllclose atol=100 rtol=0.01 [32mpassed~[0m]
+
+Running test: test_fmoe_16_bit
+test test_fmoe 16 bit
+
+g1u0 no quant
+skip asm g1u0 no-quant on gfx950: only runs on gfx942
+----- M=8 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:26:16.339016630 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] [perf] token=8, quant=No, model_dim=6144, inter_dim=2048, E=256, topk=8, dtype: torch.bfloat16, torch_avg: 26666.11 us, asm_avg:  9999.00 us, uplift: 166.7%[checkAllclose atol=100 rtol=0.01 [32mpassed~[0m]
+
+Running test: test_fmoe_16_bit
+test test_fmoe 16 bit
+
+g1u0 no quant
+skip asm g1u0 no-quant on gfx950: only runs on gfx942
+----- M=16 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:26:24.769636490 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] [perf] token=16, quant=No, model_dim=6144, inter_dim=2048, E=256, topk=8, dtype: torch.bfloat16, torch_avg: 33054.33 us, asm_avg:  9999.00 us, uplift: 230.6%[checkAllclose atol=100 rtol=0.01 [32mpassed~[0m]
+
+Running test: test_fmoe_16_bit
+test test_fmoe 16 bit
+
+g1u0 no quant
+skip asm g1u0 no-quant on gfx950: only runs on gfx942
+----- M=32 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:26:32.747586056 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] [perf] token=32, quant=No, model_dim=6144, inter_dim=2048, E=256, topk=8, dtype: torch.bfloat16, torch_avg: 39601.95 us, asm_avg:  9999.00 us, uplift: 296.1%[checkAllclose atol=100 rtol=0.01 [32mpassed~[0m]
+
+Running test: test_fmoe_16_bit
+test test_fmoe 16 bit
+
+g1u0 no quant
+skip asm g1u0 no-quant on gfx950: only runs on gfx942
+----- M=64 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:26:41.355833370 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] [perf] token=64, quant=No, model_dim=6144, inter_dim=2048, E=256, topk=8, dtype: torch.bfloat16, torch_avg: 44993.65 us, asm_avg:  9999.00 us, uplift: 350.0%[checkAllclose atol=100 rtol=0.01 [32mpassed~[0m]
+
+Running test: test_fmoe_16_bit
+test test_fmoe 16 bit
+
+g1u0 no quant
+skip asm g1u0 no-quant on gfx950: only runs on gfx942
+----- M=128 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:26:50.495264099 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] [perf] token=128, quant=No, model_dim=6144, inter_dim=2048, E=256, topk=8, dtype: torch.bfloat16, torch_avg: 48504.73 us, asm_avg:  9999.00 us, uplift: 385.1%[checkAllclose atol=100 rtol=0.01 [32mpassed~[0m]
+
+Running test: test_fmoe_16_bit
+test test_fmoe 16 bit
+
+g1u0 no quant
+skip asm g1u0 no-quant on gfx950: only runs on gfx942
+----- M=256 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:27:01.108202174 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] [perf] token=256, quant=No, model_dim=6144, inter_dim=2048, E=256, topk=8, dtype: torch.bfloat16, torch_avg: 51420.12 us, asm_avg:  9999.00 us, uplift: 414.3%[checkAllclose atol=100 rtol=0.01 [32mpassed~[0m]
+
+Running test: test_fmoe_16_bit
+test test_fmoe 16 bit
+
+g1u0 no quant
+skip asm g1u0 no-quant on gfx950: only runs on gfx942
+----- M=512 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:27:10.820278214 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] [perf] token=512, quant=No, model_dim=6144, inter_dim=2048, E=256, topk=8, dtype: torch.bfloat16, torch_avg: 52519.36 us, asm_avg:  9999.00 us, uplift: 425.2%[checkAllclose atol=100 rtol=0.01 [32mpassed~[0m]
+
+Running test: test_fmoe_16_bit
+test test_fmoe 16 bit
+
+g1u0 no quant
+skip asm g1u0 no-quant on gfx950: only runs on gfx942
+----- M=1024 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:27:21.104721009 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] [perf] token=1024, quant=No, model_dim=6144, inter_dim=2048, E=256, topk=8, dtype: torch.bfloat16, torch_avg: 52927.53 us, asm_avg:  9999.00 us, uplift: 429.3%[checkAllclose atol=100 rtol=0.01 [32mpassed~[0m]
+
+Running test: test_fmoe_16_bit
+test test_fmoe 16 bit
+
+g1u0 no quant
+skip asm g1u0 no-quant on gfx950: only runs on gfx942
+----- M=2048 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:27:30.707806714 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] [perf] token=2048, quant=No, model_dim=6144, inter_dim=2048, E=256, topk=8, dtype: torch.bfloat16, torch_avg: 59203.94 us, asm_avg:  9999.00 us, uplift: 492.1%[checkAllclose atol=100 rtol=0.01 [32mpassed~[0m]
+
+Running test: test_fmoe_16_bit
+test test_fmoe 16 bit
+
+g1u0 no quant
+skip asm g1u0 no-quant on gfx950: only runs on gfx942
+----- M=4096 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:27:40.336872594 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] [perf] token=4096, quant=No, model_dim=6144, inter_dim=2048, E=256, topk=8, dtype: torch.bfloat16, torch_avg: 69213.91 us, asm_avg:  9999.00 us, uplift: 592.2%[checkAllclose atol=100 rtol=0.01 [32mpassed~[0m]
+
+Running test: test_fmoe_16_bit
+test test_fmoe 16 bit
+
+g1u0 no quant
+skip asm g1u0 no-quant on gfx950: only runs on gfx942
+finished 2026-09-05T21:27:43+00:00
+DONE_GLM52_BF16_SWEEP

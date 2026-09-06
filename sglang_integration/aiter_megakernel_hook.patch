@@ -1,0 +1,159 @@
+diff --git a/python/sglang/srt/layers/moe/moe_runner/aiter.py b/python/sglang/srt/layers/moe/moe_runner/aiter.py
+index 6159fbc..1b47900 100644
+--- a/python/sglang/srt/layers/moe/moe_runner/aiter.py
++++ b/python/sglang/srt/layers/moe/moe_runner/aiter.py
+@@ -40,6 +40,118 @@ if TYPE_CHECKING:
+ 
+ logger = logging.getLogger(__name__)
+ 
++# EP-between-XCDs decode megakernel: when set, decode (small num_tokens) MoE
++# routes through the segmented-launch N-split megakernel (expert-weight L2 pinning)
++# instead of the opaque aiter.fused_moe hsaco. Prefill always keeps hsaco.
++_USE_MOE_DECODE_MEGAKERNEL = get_bool_env_var(
++    "SGLANG_MOE_DECODE_MEGAKERNEL", "false"
++)
++# Decode batch size threshold: routes to megakernel only when num_tokens <= this.
++_MOE_DECODE_MEGAKERNEL_MAX_TOKENS = get_int_env_var(
++    "SGLANG_MOE_DECODE_MEGAKERNEL_MAX_TOKENS", 1024
++)
++
++
++# Number of XCDs on gfx950 (MI355X VF). Private 4 MB L2 per XCD.
++_MOE_DECODE_MEGA_NUM_XCD = 8
++# Tuned best decode config (Phase 6 sweep): BLOCK_M=128 gives 1.8x over BLOCK_M=64
++# and 1.26-3.60x vs production aiter.fused_moe hsaco at decode batches (256-1024).
++# Crossover vs hsaco is ~1024-2048, so the MAX_TOKENS gate (default 1024) selects
++# the megakernel only where it wins.
++_MOE_DECODE_MEGA_BLOCK_M = 128
++_MOE_DECODE_MEGA_BLOCK_N = 128
++_MOE_DECODE_MEGA_BLOCK_K = 128
++
++
++def _moe_decode_megakernel_full(
++    hidden_states: torch.Tensor,       # (M, K_hidden) bf16
++    w13_fp8: torch.Tensor,             # (E, 2*N_inter, K_hidden) fp8 e4m3
++    w13_scale: torch.Tensor,           # (E, 2*N_inter/128, K_hidden/128) fp32
++    w2_fp8: torch.Tensor,              # (E, K_hidden, N_inter) fp8 e4m3
++    w2_scale: torch.Tensor,            # (E, K_hidden/128, N_inter/128) fp32
++    topk_weights: torch.Tensor,        # (M, topk) fp32/bf16
++    topk_ids: torch.Tensor,            # (M, topk) int32
++    a1_scale: Optional[torch.Tensor] = None,  # (M,) per-token, if pre-quantized
++) -> torch.Tensor:
++    """Full decode MoE via the EP-between-XCDs N-split megakernel for both stages.
++    Expert-sequential in M, N-split across XCDs (xcd = n_slice) -> each XCD owns a
++    fixed N-slice of every expert; per-XCD weight slice K*(N/8) fp8 fits the 4 MB
++    private L2 -> high L2 residency in decode. Single launch per stage, no
++    pid_remap table, no extra dispatches/copies. Bit-equivalent to round-robin.
++    """
++    from sglang.srt.layers.moe.moe_runner.triton_utils.moe_align_block_size import (
++        moe_align_block_size,
++    )
++    from aiter.ops.triton._triton_kernels.moe.moe_decode_megakernel import (
++        moe_decode_megakernel_stage1,
++    )
++
++    M, K_hidden = hidden_states.shape
++    topk = topk_ids.shape[-1]
++    E = w13_fp8.shape[0]
++    N2 = w13_fp8.shape[1]            # 2 * N_inter (gate-up width)
++    N_inter = w2_fp8.shape[2]
++    BM = _MOE_DECODE_MEGA_BLOCK_M
++
++    # Routing: sort token-expert pairs by expert (production helper).
++    sorted_token_ids, expert_ids, num_tokens_post_padded = moe_align_block_size(
++        topk_ids, BM, E
++    )
++    npm = expert_ids.shape[0]
++
++    # Stage-1 activation: per-token-group fp8 quant (block_k=128).
++    if hidden_states.dtype == torch.float8_e4m3fn:
++        a1_fp8 = hidden_states
++        a1_scale = a1_scale if a1_scale is not None else torch.ones(
++            M, dtype=torch.float32, device=hidden_states.device
++        )
++    else:
++        from sglang.kernels.ops.quantization.fp8_kernel import per_token_group_quant_fp8
++        a1_fp8, a1_scale = per_token_group_quant_fp8(hidden_states, _MOE_DECODE_MEGA_BLOCK_K)
++
++    # Stage-1 GEMM: (M*topk, K_hidden) @ w13 -> (npm*BM, 2*N_inter)
++    # NOTE: zeros (not empty) so masked/padding rows stay 0 and do not propagate
++    # NaN through silu -> stage2 -> final output.
++    gemm1 = torch.zeros(npm * BM, N2, dtype=torch.bfloat16, device=hidden_states.device)
++    moe_decode_megakernel_stage1(
++        a1_fp8, w13_fp8, a1_scale, w13_scale,
++        sorted_token_ids, expert_ids, gemm1, topk,
++        block_m=BM, block_n=_MOE_DECODE_MEGA_BLOCK_N, block_k=_MOE_DECODE_MEGA_BLOCK_K,
++    )
++
++    # SiLU gate-up (gate-up INTERLEAVED: gate/up alternate columns).
++    gate = gemm1[:, 0::2]
++    up = gemm1[:, 1::2]
++    inter = (torch.nn.functional.silu(gate) * up).to(torch.bfloat16)
++
++    # Stage-2 activation: per-token-group fp8 quant.
++    from sglang.kernels.ops.quantization.fp8_kernel import per_token_group_quant_fp8
++    a2_fp8, a2_scale = per_token_group_quant_fp8(inter, _MOE_DECODE_MEGA_BLOCK_K)
++
++    # Stage-2 GEMM: (npm*BM, N_inter) @ w2 -> (npm*BM, K_hidden)
++    # NOTE: zeros so masked/padding rows stay 0 (see stage-1 comment).
++    gemm2 = torch.zeros(npm * BM, K_hidden, dtype=torch.bfloat16, device=hidden_states.device)
++    moe_decode_megakernel_stage1(
++        a2_fp8, w2_fp8, a2_scale, w2_scale,
++        sorted_token_ids, expert_ids, gemm2, topk,
++        block_m=BM, block_n=_MOE_DECODE_MEGA_BLOCK_N, block_k=_MOE_DECODE_MEGA_BLOCK_K,
++    )
++
++    # Router weight + unpermute. gemm2 is indexed by sorted position; scatter
++    # each row to its original (token, topk) index, weighted, then sum over topk.
++    T = M * topk
++    st = sorted_token_ids  # (npm*BM,) original token*topk index per sorted position
++    valid = st < T
++    pos = torch.arange(st.shape[0], device=hidden_states.device)
++    vpos = pos[valid]                 # valid sorted positions
++    vst = st[valid]                    # their original (token, topk) indices
++    vrows = gemm2[vpos]                 # (num_valid, K_hidden)
++    vw = topk_weights.reshape(-1)[vst].to(torch.bfloat16)  # (num_valid,)
++    weighted = vrows * vw.unsqueeze(1)
++    out_flat = torch.zeros(T, K_hidden, device=hidden_states.device, dtype=torch.float32)
++    out_flat.index_add_(0, vst, weighted.to(torch.float32))
++    return out_flat.view(M, topk, K_hidden).sum(dim=1).to(torch.bfloat16)
++
+ 
+ class AiterQuantType(str, Enum):
+     NONE = "No"
+@@ -291,6 +403,35 @@ class AiterRunnerCore(MoeRunnerCore):
+         if self.config.no_combine:
+             extra["no_combine"] = True
+ 
++        # --- EP-between-XCDs decode megakernel path ---------------------------
++        # Decode-only: route through the N-split megakernel (expert-weight L2
++        # pinning) when the flag is set, num_tokens is small (decode), and the
++        # quant config is block-wise 128x128 fp8 with no bias / no swiglu_limit
++        # and gate-up-interleaved layout (GLM-5.2 / Kimi-K3). Prefill keeps hsaco.
++        num_tokens = runner_input.hidden_states.shape[0]
++        if (
++            _USE_MOE_DECODE_MEGAKERNEL
++            and num_tokens <= _MOE_DECODE_MEGAKERNEL_MAX_TOKENS
++            and runner_input.quant_type == AiterQuantType.PER_128X128
++            and quant_info.b13 is None
++            and quant_info.b2 is None
++            and quant_info.swiglu_limit == 0.0
++            and not self.config.no_combine
++            and quant_info.w13_scale is not None
++            and quant_info.w2_scale is not None
++        ):
++            out_hs = _moe_decode_megakernel_full(
++                runner_input.hidden_states,
++                quant_info.w13_weight,
++                quant_info.w13_scale,
++                quant_info.w2_weight,
++                quant_info.w2_scale,
++                runner_input.topk_weights,
++                runner_input.topk_ids,
++                a1_scale=runner_input.a1_scale,
++            )
++            return AiterRunnerOutput(hidden_states=out_hs)
++
+         output = fused_moe(
+             hidden_states=runner_input.hidden_states,
+             w1=quant_info.w13_weight,

@@ -1,0 +1,229 @@
+=== DSA paged-MQA logits (deepgemm_attention) ===
+hq=64 index_dim=128 (GLM-5.2 indexer shape)
+started 2026-09-05T21:25:46+00:00
+----- B=1 kv_length=512 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[W905 21:25:56.391948182 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  MRV5IT6ZTXWLKCFP4O2YI3OFHXPV7GA7TCBIS2DIXCOS4WXVBIOQ
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  136.01847999999995
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  MRV5IT6ZTXWLKCFP4O2YI3OFHXPV7GA7TCBIS2DIXCOS4WXVBIOQ
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  158.33084
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  MRV5IT6ZTXWLKCFP4O2YI3OFHXPV7GA7TCBIS2DIXCOS4WXVBIOQ
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  173.49653608247422
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  DYQU7Y6BJC4QMMDPRLDNIRW3B6DUQCDLTGUD2MDAMMNIFI6QIASQ
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  143.59115151515144
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  DYQU7Y6BJC4QMMDPRLDNIRW3B6DUQCDLTGUD2MDAMMNIFI6QIASQ
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  315.78742
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  DYQU7Y6BJC4QMMDPRLDNIRW3B6DUQCDLTGUD2MDAMMNIFI6QIASQ
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  321.72470408163264
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  IDI5H2Y2KAYWD4UITJ4QS6MBDPPAGRFMSRID2SEMQ7YKMO4Z6QWQ
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  181.27019191919194
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  IDI5H2Y2KAYWD4UITJ4QS6MBDPPAGRFMSRID2SEMQ7YKMO4Z6QWQ
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  432.1863099999997
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  XCBFFJ4JOU4N3JQHIC7ETD2AWXP4C4BU7BHUM4J67OIOL2DHP6DQ
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  654.6259787234043
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  WHKACBOH5LHAUVKIPYJ6RIOLXIEH3CG5KDI5YOAB2UWLTPWX6VMQ
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  151.57311111111107
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  6ASAIG77IT2SZTYPYTNGWYVUSKOHRJMGHPQCLYPHNOSFN2IE2ONQ
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  171.18634343434348
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  VCKGBIBS5OAVBYSJD6RMXSI6BVKX4POSRXZ73DCBHIPDVYAEZSBA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  420.94205154639167
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  6QQWHWD5GCISTMPYQKZ32724X36BEEKSKX4KZBA53OL2JZB2Q7YQ
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  665.7385510204082
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k
+0          1.0     2.0   64.0      128.0        16384.0      3.498231
+1          1.0     2.0   64.0      128.0        32768.0      9.414360
+2          1.0     2.0   64.0      128.0        65536.0     12.289662
+3          2.0     2.0   64.0      128.0        16384.0      5.834478
+4          2.0     2.0   64.0      128.0        32768.0      9.678671
+5          2.0     2.0   64.0      128.0        65536.0     10.445131
+6          4.0     2.0   64.0      128.0        16384.0     10.102085
+7          4.0     2.0   64.0      128.0        32768.0     11.202204
+8          4.0     2.0   64.0      128.0        65536.0     14.616020
+9          1.0     1.0   64.0      128.0        65536.0      7.033615
+10         2.0     1.0   64.0      128.0        65536.0      9.815201
+11         4.0     1.0   64.0      128.0        65536.0     11.365016
+12         8.0     1.0   64.0      128.0        65536.0     13.839679
+----- B=1 kv_length=2048 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[W905 21:30:22.254907770 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  MRV5IT6ZTXWLKCFP4O2YI3OFHXPV7GA7TCBIS2DIXCOS4WXVBIOQ
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  135.22905102040812
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  MRV5IT6ZTXWLKCFP4O2YI3OFHXPV7GA7TCBIS2DIXCOS4WXVBIOQ
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  157.79306060606064
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  MRV5IT6ZTXWLKCFP4O2YI3OFHXPV7GA7TCBIS2DIXCOS4WXVBIOQ
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  173.37886458333335
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  DYQU7Y6BJC4QMMDPRLDNIRW3B6DUQCDLTGUD2MDAMMNIFI6QIASQ
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  143.52863636363637
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  DYQU7Y6BJC4QMMDPRLDNIRW3B6DUQCDLTGUD2MDAMMNIFI6QIASQ
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  315.8690510204082
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  DYQU7Y6BJC4QMMDPRLDNIRW3B6DUQCDLTGUD2MDAMMNIFI6QIASQ
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  321.45407446808525
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  IDI5H2Y2KAYWD4UITJ4QS6MBDPPAGRFMSRID2SEMQ7YKMO4Z6QWQ
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  181.0835360824743
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  IDI5H2Y2KAYWD4UITJ4QS6MBDPPAGRFMSRID2SEMQ7YKMO4Z6QWQ
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  431.96091000000007
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  XCBFFJ4JOU4N3JQHIC7ETD2AWXP4C4BU7BHUM4J67OIOL2DHP6DQ
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  655.1147100000003
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  WHKACBOH5LHAUVKIPYJ6RIOLXIEH3CG5KDI5YOAB2UWLTPWX6VMQ
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  151.27983838383838
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  6ASAIG77IT2SZTYPYTNGWYVUSKOHRJMGHPQCLYPHNOSFN2IE2ONQ
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  170.9392653061224
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  VCKGBIBS5OAVBYSJD6RMXSI6BVKX4POSRXZ73DCBHIPDVYAEZSBA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  420.4918199999998
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  6QQWHWD5GCISTMPYQKZ32724X36BEEKSKX4KZBA53OL2JZB2Q7YQ
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  666.3233600000005
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k
+0          1.0     2.0   64.0      128.0        16384.0      3.518653
+1          1.0     2.0   64.0      128.0        32768.0      9.446446
+2          1.0     2.0   64.0      128.0        65536.0     12.298003
+3          2.0     2.0   64.0      128.0        16384.0      5.837020
+4          2.0     2.0   64.0      128.0        32768.0      9.676169
+5          2.0     2.0   64.0      128.0        65536.0     10.453925
+6          4.0     2.0   64.0      128.0        16384.0     10.112498
+7          4.0     2.0   64.0      128.0        32768.0     11.208049
+8          4.0     2.0   64.0      128.0        65536.0     14.605116
+9          1.0     1.0   64.0      128.0        65536.0      7.047250
+10         2.0     1.0   64.0      128.0        65536.0      9.829388
+11         4.0     1.0   64.0      128.0        65536.0     11.377185
+12         8.0     1.0   64.0      128.0        65536.0     13.827533
+----- B=1 kv_length=8192 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[W905 21:34:56.240729848 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  MRV5IT6ZTXWLKCFP4O2YI3OFHXPV7GA7TCBIS2DIXCOS4WXVBIOQ
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  135.77035353535354
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  MRV5IT6ZTXWLKCFP4O2YI3OFHXPV7GA7TCBIS2DIXCOS4WXVBIOQ
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  158.1505
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  MRV5IT6ZTXWLKCFP4O2YI3OFHXPV7GA7TCBIS2DIXCOS4WXVBIOQ
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  173.24198913043483
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  DYQU7Y6BJC4QMMDPRLDNIRW3B6DUQCDLTGUD2MDAMMNIFI6QIASQ
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  143.9553979591837
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  DYQU7Y6BJC4QMMDPRLDNIRW3B6DUQCDLTGUD2MDAMMNIFI6QIASQ
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  316.0941515151515
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  DYQU7Y6BJC4QMMDPRLDNIRW3B6DUQCDLTGUD2MDAMMNIFI6QIASQ
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  321.7580707070707
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  IDI5H2Y2KAYWD4UITJ4QS6MBDPPAGRFMSRID2SEMQ7YKMO4Z6QWQ
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  181.05810309278354
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  IDI5H2Y2KAYWD4UITJ4QS6MBDPPAGRFMSRID2SEMQ7YKMO4Z6QWQ
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  432.01191919191933
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  XCBFFJ4JOU4N3JQHIC7ETD2AWXP4C4BU7BHUM4J67OIOL2DHP6DQ
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  654.5365959595961
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  WHKACBOH5LHAUVKIPYJ6RIOLXIEH3CG5KDI5YOAB2UWLTPWX6VMQ
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  151.72246391752574
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  6ASAIG77IT2SZTYPYTNGWYVUSKOHRJMGHPQCLYPHNOSFN2IE2ONQ
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  171.1193684210526
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  VCKGBIBS5OAVBYSJD6RMXSI6BVKX4POSRXZ73DCBHIPDVYAEZSBA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  420.57123000000024
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  6QQWHWD5GCISTMPYQKZ32724X36BEEKSKX4KZBA53OL2JZB2Q7YQ
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  665.7174795918369
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k
+0          1.0     2.0   64.0      128.0        16384.0      3.504625
+1          1.0     2.0   64.0      128.0        32768.0      9.425095
+2          1.0     2.0   64.0      128.0        65536.0     12.307719
+3          2.0     2.0   64.0      128.0        16384.0      5.819715
+4          2.0     2.0   64.0      128.0        32768.0      9.669279
+5          2.0     2.0   64.0      128.0        65536.0     10.444048
+6          4.0     2.0   64.0      128.0        16384.0     10.113919
+7          4.0     2.0   64.0      128.0        32768.0     11.206726
+8          4.0     2.0   64.0      128.0        65536.0     14.618016
+9          1.0     1.0   64.0      128.0        65536.0      7.026691
+10         2.0     1.0   64.0      128.0        65536.0      9.819043
+11         4.0     1.0   64.0      128.0        65536.0     11.375037
+12         8.0     1.0   64.0      128.0        65536.0     13.840117
+----- B=1 kv_length=32768 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[W905 21:39:29.608253128 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+----- B=4 kv_length=512 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[W905 21:42:22.905798761 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())

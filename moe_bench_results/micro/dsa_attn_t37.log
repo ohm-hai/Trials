@@ -1,0 +1,1405 @@
+=== DSA paged-MQA logits (deepgemm_attention) — triton 3.7.0 ===
+hq=64 index_dim=128 (GLM-5.2 indexer shape), GPU0
+started 2026-09-05T22:51:25+00:00
+----- B=1 kv_length=512 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W905 22:51:34.611523893 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.388677083333349
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  27.278793814432973
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.661600000000035
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.585404040404043
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.533927083333346
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.250782608695665
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  36.266546391752584
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  66.65249462365591
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.06958241758237
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  21.08501041666668
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  33.530465116279096
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  69.04623076923072
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.33415957446819
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              41.780457
+1          1.0     2.0   64.0      128.0        32768.0              54.642576
+2          1.0     2.0   64.0      128.0        65536.0              61.515157
+3          2.0     2.0   64.0      128.0        16384.0              45.077280
+4          2.0     2.0   64.0      128.0        32768.0              75.403561
+5          2.0     2.0   64.0      128.0        65536.0              63.106241
+6          4.0     2.0   64.0      128.0        16384.0              50.493005
+7          4.0     2.0   64.0      128.0        32768.0              72.637030
+8          4.0     2.0   64.0      128.0        65536.0              79.029154
+9          1.0     1.0   64.0      128.0        65536.0              50.562312
+10         2.0     1.0   64.0      128.0        65536.0              50.110499
+11         4.0     1.0   64.0      128.0        65536.0              69.287103
+12         8.0     1.0   64.0      128.0        65536.0              75.935812
+----- B=1 kv_length=2048 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W905 22:55:49.967500072 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.757121212121193
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  27.47458064516127
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  35.3022142857143
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.80305319148936
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.79408163265306
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.419102040816334
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  36.20595604395604
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  66.66883000000001
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.37004301075265
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  21.32768421052632
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.9393469387755
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  68.92007608695653
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.21992307692308
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              40.471143
+1          1.0     2.0   64.0      128.0        32768.0              54.253187
+2          1.0     2.0   64.0      128.0        65536.0              60.398867
+3          2.0     2.0   64.0      128.0        16384.0              44.555501
+4          2.0     2.0   64.0      128.0        32768.0              74.922692
+5          2.0     2.0   64.0      128.0        65536.0              62.907398
+6          4.0     2.0   64.0      128.0        16384.0              50.577505
+7          4.0     2.0   64.0      128.0        32768.0              72.619232
+8          4.0     2.0   64.0      128.0        65536.0              78.833511
+9          1.0     1.0   64.0      128.0        65536.0              49.986997
+10         2.0     1.0   64.0      128.0        65536.0              48.089861
+11         4.0     1.0   64.0      128.0        65536.0              69.413930
+12         8.0     1.0   64.0      128.0        65536.0              76.007373
+----- B=1 kv_length=8192 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W905 23:00:43.943748480 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.351744897959177
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  27.044494949494926
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.79649494949494
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.62348999999999
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.734526315789466
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.16502127659573
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  36.20175757575757
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  67.03559595959592
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.82096875000006
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  20.793314606741568
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  33.533852272727245
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  68.67349450549452
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.12227659574467
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              41.916387
+1          1.0     2.0   64.0      128.0        32768.0              55.115969
+2          1.0     2.0   64.0      128.0        65536.0              61.276682
+3          2.0     2.0   64.0      128.0        16384.0              44.985094
+4          2.0     2.0   64.0      128.0        32768.0              75.032232
+5          2.0     2.0   64.0      128.0        65536.0              63.208038
+6          4.0     2.0   64.0      128.0        16384.0              50.583370
+7          4.0     2.0   64.0      128.0        32768.0              72.221917
+8          4.0     2.0   64.0      128.0        65536.0              78.541705
+9          1.0     1.0   64.0      128.0        65536.0              51.271618
+10         2.0     1.0   64.0      128.0        65536.0              50.105438
+11         4.0     1.0   64.0      128.0        65536.0              69.663170
+12         8.0     1.0   64.0      128.0        65536.0              76.068649
+----- B=1 kv_length=32768 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W905 23:05:16.533993953 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.271237113402071
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  27.084069999999997
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.720540816326526
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.570790000000024
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.71979166666666
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.42459574468085
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  36.19647959183672
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  67.14902040816325
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.34666315789475
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  20.82518681318681
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  33.579318181818195
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  68.97589010989012
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.14705434782609
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              42.215785
+1          1.0     2.0   64.0      128.0        32768.0              55.035434
+2          1.0     2.0   64.0      128.0        65536.0              61.410730
+3          2.0     2.0   64.0      128.0        16384.0              45.112753
+4          2.0     2.0   64.0      128.0        32768.0              75.059383
+5          2.0     2.0   64.0      128.0        65536.0              62.900929
+6          4.0     2.0   64.0      128.0        16384.0              50.590746
+7          4.0     2.0   64.0      128.0        32768.0              72.099923
+8          4.0     2.0   64.0      128.0        65536.0              78.848700
+9          1.0     1.0   64.0      128.0        65536.0              51.193148
+10         2.0     1.0   64.0      128.0        65536.0              50.037596
+11         4.0     1.0   64.0      128.0        65536.0              69.357761
+12         8.0     1.0   64.0      128.0        65536.0              76.053091
+----- B=4 kv_length=512 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W905 23:09:31.923320114 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.37213265306122
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  26.8332
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.605397959183705
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.520747474747424
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.60626530612247
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.08661797752808
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  35.71121276595743
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  66.86139393939398
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.02432978723398
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  21.224555555555554
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.90973958333333
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  68.98569565217389
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.48133684210525
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              41.841240
+1          1.0     2.0   64.0      128.0        32768.0              55.549974
+2          1.0     2.0   64.0      128.0        65536.0              61.615063
+3          2.0     2.0   64.0      128.0        16384.0              45.234646
+4          2.0     2.0   64.0      128.0        32768.0              75.269233
+5          2.0     2.0   64.0      128.0        65536.0              63.301390
+6          4.0     2.0   64.0      128.0        16384.0              51.278206
+7          4.0     2.0   64.0      128.0        32768.0              72.410085
+8          4.0     2.0   64.0      128.0        65536.0              79.058704
+9          1.0     1.0   64.0      128.0        65536.0              50.229880
+10         2.0     1.0   64.0      128.0        65536.0              48.130647
+11         4.0     1.0   64.0      128.0        65536.0              69.347903
+12         8.0     1.0   64.0      128.0        65536.0              75.843814
+----- B=4 kv_length=2048 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W905 23:14:14.165808452 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.340878787878788
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  27.039979797979804
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.71679381443301
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.53436999999999
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.74586315789475
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.384294736842094
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  35.96265624999999
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  66.57031958762886
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.71678350515462
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  20.60643181818184
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  33.689629213483165
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  69.02335164835159
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.30393617021281
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              41.956548
+1          1.0     2.0   64.0      128.0        32768.0              55.125173
+2          1.0     2.0   64.0      128.0        65536.0              61.417358
+3          2.0     2.0   64.0      128.0        16384.0              45.201399
+4          2.0     2.0   64.0      128.0        32768.0              75.011356
+5          2.0     2.0   64.0      128.0        65536.0              62.948414
+6          4.0     2.0   64.0      128.0        16384.0              50.919679
+7          4.0     2.0   64.0      128.0        32768.0              72.726694
+8          4.0     2.0   64.0      128.0        65536.0              78.608934
+9          1.0     1.0   64.0      128.0        65536.0              51.736608
+10         2.0     1.0   64.0      128.0        65536.0              49.873756
+11         4.0     1.0   64.0      128.0        65536.0              69.310070
+12         8.0     1.0   64.0      128.0        65536.0              75.954732
+----- B=4 kv_length=8192 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W905 23:18:38.143089129 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.407622448979593
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  27.07117000000004
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.63272448979592
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.515378947368422
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.70765625000001
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.17882105263157
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  36.146642857142865
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  66.65197999999998
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.76670103092785
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  20.60184444444446
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  33.50162790697676
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  69.30806666666665
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.28978021978017
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              41.711069
+1          1.0     2.0   64.0      128.0        32768.0              55.061660
+2          1.0     2.0   64.0      128.0        65536.0              61.566446
+3          2.0     2.0   64.0      128.0        16384.0              45.247762
+4          2.0     2.0   64.0      128.0        32768.0              75.081759
+5          2.0     2.0   64.0      128.0        65536.0              63.191636
+6          4.0     2.0   64.0      128.0        16384.0              50.660498
+7          4.0     2.0   64.0      128.0        32768.0              72.637591
+8          4.0     2.0   64.0      128.0        65536.0              78.576709
+9          1.0     1.0   64.0      128.0        65536.0              51.748128
+10         2.0     1.0   64.0      128.0        65536.0              50.153633
+11         4.0     1.0   64.0      128.0        65536.0              69.025346
+12         8.0     1.0   64.0      128.0        65536.0              75.963597
+----- B=4 kv_length=32768 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W905 23:22:53.150427776 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.373103092783504
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  26.985744897959176
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.558886597938134
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.51839393939395
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.67720430107527
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.25657291666665
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  36.0968775510204
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  67.11137113402062
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.5091789473684
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  20.57625842696629
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  33.53975555555555
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  69.0791956521739
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.32012903225801
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              41.837669
+1          1.0     2.0   64.0      128.0        32768.0              55.235961
+2          1.0     2.0   64.0      128.0        65536.0              61.697988
+3          2.0     2.0   64.0      128.0        16384.0              45.240395
+4          2.0     2.0   64.0      128.0        32768.0              75.137967
+5          2.0     2.0   64.0      128.0        65536.0              63.099379
+6          4.0     2.0   64.0      128.0        16384.0              50.730341
+7          4.0     2.0   64.0      128.0        32768.0              72.140371
+8          4.0     2.0   64.0      128.0        65536.0              78.743242
+9          1.0     1.0   64.0      128.0        65536.0              51.812475
+10         2.0     1.0   64.0      128.0        65536.0              50.096619
+11         4.0     1.0   64.0      128.0        65536.0              69.254039
+12         8.0     1.0   64.0      128.0        65536.0              75.944594
+----- B=8 kv_length=512 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W905 23:27:11.636759745 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.795595959595953
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  27.63763541666665
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.51351041666666
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.84488172043011
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.49830107526882
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.31993684210528
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  35.90220408163266
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  67.04210204081636
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.18510752688178
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  21.53813186813186
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  33.6602
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  69.20976842105262
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.12318478260872
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              40.339134
+1          1.0     2.0   64.0      128.0        32768.0              53.933107
+2          1.0     2.0   64.0      128.0        65536.0              61.779104
+3          2.0     2.0   64.0      128.0        16384.0              44.456605
+4          2.0     2.0   64.0      128.0        32768.0              75.469893
+5          2.0     2.0   64.0      128.0        65536.0              63.024394
+6          4.0     2.0   64.0      128.0        16384.0              51.005418
+7          4.0     2.0   64.0      128.0        32768.0              72.214908
+8          4.0     2.0   64.0      128.0        65536.0              78.953816
+9          1.0     1.0   64.0      128.0        65536.0              49.498577
+10         2.0     1.0   64.0      128.0        65536.0              49.917361
+11         4.0     1.0   64.0      128.0        65536.0              69.123383
+12         8.0     1.0   64.0      128.0        65536.0              76.068079
+----- B=8 kv_length=2048 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W905 23:31:44.668227268 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.343581632653084
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  27.01105102040816
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.49996703296703
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.435835051546405
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.66602083333334
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.09458888888888
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  36.03434375000002
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  67.07509278350518
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.63496774193553
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  20.62994252873564
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  33.544137931034484
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  68.89580851063833
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.7857934782609
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              41.946551
+1          1.0     2.0   64.0      128.0        32768.0              55.184211
+2          1.0     2.0   64.0      128.0        65536.0              61.803356
+3          2.0     2.0   64.0      128.0        16384.0              45.442989
+4          2.0     2.0   64.0      128.0        32768.0              75.158630
+5          2.0     2.0   64.0      128.0        65536.0              63.291887
+6          4.0     2.0   64.0      128.0        16384.0              50.818378
+7          4.0     2.0   64.0      128.0        32768.0              72.179389
+8          4.0     2.0   64.0      128.0        65536.0              78.661809
+9          1.0     1.0   64.0      128.0        65536.0              51.677647
+10         2.0     1.0   64.0      128.0        65536.0              50.090074
+11         4.0     1.0   64.0      128.0        65536.0              69.438380
+12         8.0     1.0   64.0      128.0        65536.0              75.654210
+----- B=8 kv_length=8192 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W905 23:36:05.549039026 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.51165979381446
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  27.021697916666636
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.47387640449442
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.652773195876275
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.90574226804123
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.318588888888854
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  36.27646938775509
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  66.688
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.02331818181818
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  20.903631578947365
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.090041237113404
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  69.2348586956522
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.13703333333332
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              41.334103
+1          1.0     2.0   64.0      128.0        32768.0              55.162468
+2          1.0     2.0   64.0      128.0        65536.0              61.850131
+3          2.0     2.0   64.0      128.0        16384.0              44.914472
+4          2.0     2.0   64.0      128.0        32768.0              74.718176
+5          2.0     2.0   64.0      128.0        65536.0              63.025987
+6          4.0     2.0   64.0      128.0        16384.0              50.479193
+7          4.0     2.0   64.0      128.0        32768.0              72.598357
+8          4.0     2.0   64.0      128.0        65536.0              79.059364
+9          1.0     1.0   64.0      128.0        65536.0              51.001037
+10         2.0     1.0   64.0      128.0        65536.0              49.287953
+11         4.0     1.0   64.0      128.0        65536.0              69.098333
+12         8.0     1.0   64.0      128.0        65536.0              76.059382
+----- B=8 kv_length=32768 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W905 23:40:31.637230224 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.47784375000004
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  27.04478999999999
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.45002150537635
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.47913402061856
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.94036363636364
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.37968131868132
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  36.17334020618552
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  66.55384693877548
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.04591208791213
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  20.836666666666677
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.00676842105262
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  69.05628260869564
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.38317204301076
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              41.455881
+1          1.0     2.0   64.0      128.0        32768.0              55.115368
+2          1.0     2.0   64.0      128.0        65536.0              61.892959
+3          2.0     2.0   64.0      128.0        16384.0              45.336511
+4          2.0     2.0   64.0      128.0        32768.0              74.654990
+5          2.0     2.0   64.0      128.0        65536.0              62.953855
+6          4.0     2.0   64.0      128.0        16384.0              50.623108
+7          4.0     2.0   64.0      128.0        32768.0              72.744694
+8          4.0     2.0   64.0      128.0        65536.0              79.044608
+9          1.0     1.0   64.0      128.0        65536.0              51.164944
+10         2.0     1.0   64.0      128.0        65536.0              49.408645
+11         4.0     1.0   64.0      128.0        65536.0              69.277018
+12         8.0     1.0   64.0      128.0        65536.0              75.905150
+----- B=32 kv_length=512 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W905 23:44:46.940171442 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.843284210526292
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  27.272484536082487
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.885606060606065
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.785199999999996
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.92905154639177
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.262494505494544
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  36.18693684210527
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  66.51286
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.60707368421045
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  21.24917894736841
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  33.79612903225807
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  69.19576923076924
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.12481318681321
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              40.176704
+1          1.0     2.0   64.0      128.0        32768.0              54.655217
+2          1.0     2.0   64.0      128.0        65536.0              61.120158
+3          2.0     2.0   64.0      128.0        16384.0              44.597846
+4          2.0     2.0   64.0      128.0        32768.0              74.675623
+5          2.0     2.0   64.0      128.0        65536.0              63.092364
+6          4.0     2.0   64.0      128.0        16384.0              50.604087
+7          4.0     2.0   64.0      128.0        32768.0              72.789521
+8          4.0     2.0   64.0      128.0        65536.0              78.679853
+9          1.0     1.0   64.0      128.0        65536.0              50.171674
+10         2.0     1.0   64.0      128.0        65536.0              49.716592
+11         4.0     1.0   64.0      128.0        65536.0              69.137367
+12         8.0     1.0   64.0      128.0        65536.0              76.067056
+----- B=32 kv_length=2048 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W905 23:49:14.617589396 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.494221052631577
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  26.91955102040815
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.59834736842104
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.6411443298969
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.919214285714304
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.20518181818181
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  36.33461458333336
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  66.83898999999998
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.57501063829794
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  20.727807228915655
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  33.38539080459769
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  69.15675824175827
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.34654945054949
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              41.396814
+1          1.0     2.0   64.0      128.0        32768.0              55.371784
+2          1.0     2.0   64.0      128.0        65536.0              61.627619
+3          2.0     2.0   64.0      128.0        16384.0              44.942491
+4          2.0     2.0   64.0      128.0        32768.0              74.693576
+5          2.0     2.0   64.0      128.0        65536.0              63.160327
+6          4.0     2.0   64.0      128.0        16384.0              50.398413
+7          4.0     2.0   64.0      128.0        32768.0              72.434357
+8          4.0     2.0   64.0      128.0        65536.0              78.700603
+9          1.0     1.0   64.0      128.0        65536.0              51.433655
+10         2.0     1.0   64.0      128.0        65536.0              50.328252
+11         4.0     1.0   64.0      128.0        65536.0              69.176367
+12         8.0     1.0   64.0      128.0        65536.0              75.928059
+----- B=32 kv_length=8192 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W905 23:53:37.178857579 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.42653125000001
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  26.94989999999999
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.50876086956522
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.66794845360827
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.814039999999956
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.20154444444446
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  36.0375918367347
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  67.15502999999998
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.63980208333335
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  20.71172826086956
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  33.524735632183926
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  69.46381443298972
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.21505434782608
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              41.642045
+1          1.0     2.0   64.0      128.0        32768.0              55.309428
+2          1.0     2.0   64.0      128.0        65536.0              61.787607
+3          2.0     2.0   64.0      128.0        16384.0              44.877961
+4          2.0     2.0   64.0      128.0        32768.0              74.886055
+5          2.0     2.0   64.0      128.0        65536.0              63.164646
+6          4.0     2.0   64.0      128.0        16384.0              50.813798
+7          4.0     2.0   64.0      128.0        32768.0              72.093471
+8          4.0     2.0   64.0      128.0        65536.0              78.658683
+9          1.0     1.0   64.0      128.0        65536.0              51.473584
+10         2.0     1.0   64.0      128.0        65536.0              50.119063
+11         4.0     1.0   64.0      128.0        65536.0              68.870582
+12         8.0     1.0   64.0      128.0        65536.0              76.010426
+----- B=32 kv_length=32768 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W905 23:57:51.685375735 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.363624999999999
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  27.215867346938783
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.68174736842102
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.620724489795926
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.766612244897935
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.135279569892475
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  36.78236082474226
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  66.91990721649483
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.52756382978718
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  21.461782608695625
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  35.439265306122444
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  68.86148351648355
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.32379569892478
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              41.872565
+1          1.0     2.0   64.0      128.0        32768.0              54.768916
+2          1.0     2.0   64.0      128.0        65536.0              61.479421
+3          2.0     2.0   64.0      128.0        16384.0              44.991776
+4          2.0     2.0   64.0      128.0        32768.0              74.973177
+5          2.0     2.0   64.0      128.0        65536.0              63.243418
+6          4.0     2.0   64.0      128.0        16384.0              49.784921
+7          4.0     2.0   64.0      128.0        32768.0              72.346771
+8          4.0     2.0   64.0      128.0        65536.0              78.731329
+9          1.0     1.0   64.0      128.0        65536.0              49.674666
+10         2.0     1.0   64.0      128.0        65536.0              47.411489
+11         4.0     1.0   64.0      128.0        65536.0              69.472992
+12         8.0     1.0   64.0      128.0        65536.0              75.942299
+----- B=64 kv_length=512 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W906 00:02:39.388202786 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.819715789473673
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  27.47464583333333
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.61861538461539
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.877893617021282
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.76011458333335
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.286670454545494
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  36.07135416666669
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  66.93972727272731
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.76787500000006
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  21.483065217391314
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.16998969072164
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  69.1942
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.68511827956988
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              40.256816
+1          1.0     2.0   64.0      128.0        32768.0              54.253058
+2          1.0     2.0   64.0      128.0        65536.0              61.591538
+3          2.0     2.0   64.0      128.0        16384.0              44.378863
+4          2.0     2.0   64.0      128.0        32768.0              74.985129
+5          2.0     2.0   64.0      128.0        65536.0              63.063739
+6          4.0     2.0   64.0      128.0        16384.0              50.766237
+7          4.0     2.0   64.0      128.0        32768.0              72.325350
+8          4.0     2.0   64.0      128.0        65536.0              78.575951
+9          1.0     1.0   64.0      128.0        65536.0              49.625455
+10         2.0     1.0   64.0      128.0        65536.0              49.172633
+11         4.0     1.0   64.0      128.0        65536.0              69.138935
+12         8.0     1.0   64.0      128.0        65536.0              75.716801
+----- B=64 kv_length=2048 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W906 00:07:13.203180504 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.71581443298969
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  27.37390816326532
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.8259696969697
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.865546391752563
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.74260204081635
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.31185263157896
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  36.012896907216486
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  66.85758
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.58652631578947
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  21.3548817204301
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  33.60282222222223
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  68.76880219780217
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.03868478260871
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              40.613833
+1          1.0     2.0   64.0      128.0        32768.0              54.452713
+2          1.0     2.0   64.0      128.0        65536.0              61.224821
+3          2.0     2.0   64.0      128.0        16384.0              44.407908
+4          2.0     2.0   64.0      128.0        32768.0              75.017360
+5          2.0     2.0   64.0      128.0        65536.0              63.033951
+6          4.0     2.0   64.0      128.0        16384.0              50.848642
+7          4.0     2.0   64.0      128.0        32768.0              72.414216
+8          4.0     2.0   64.0      128.0        65536.0              78.693149
+9          1.0     1.0   64.0      128.0        65536.0              49.923333
+10         2.0     1.0   64.0      128.0        65536.0              50.002596
+11         4.0     1.0   64.0      128.0        65536.0              69.566623
+12         8.0     1.0   64.0      128.0        65536.0              76.121184
+----- B=64 kv_length=8192 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W906 00:11:43.558871040 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.806051020408159
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  27.421239999999994
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.879255102040815
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.67751041666665
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.72102127659572
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.2605274725274
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  35.88464948453609
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  67.035887755102
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.47832989690728
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  20.80782474226803
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.90607999999999
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  68.92824999999998
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.16404347826085
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              40.303411
+1          1.0     2.0   64.0      128.0        32768.0              54.358722
+2          1.0     2.0   64.0      128.0        65536.0              61.131287
+3          2.0     2.0   64.0      128.0        16384.0              44.854985
+4          2.0     2.0   64.0      128.0        32768.0              75.057116
+5          2.0     2.0   64.0      128.0        65536.0              63.094694
+6          4.0     2.0   64.0      128.0        16384.0              51.030369
+7          4.0     2.0   64.0      128.0        32768.0              72.221602
+8          4.0     2.0   64.0      128.0        65536.0              78.763238
+9          1.0     1.0   64.0      128.0        65536.0              51.235864
+10         2.0     1.0   64.0      128.0        65536.0              48.135693
+11         4.0     1.0   64.0      128.0        65536.0              69.405698
+12         8.0     1.0   64.0      128.0        65536.0              76.042427
+----- B=64 kv_length=32768 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+[W906 00:16:23.350910645 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 8 (function operator())
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0003, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  11.46436170212768
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0010, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  26.91463636363637
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0008, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.38372727272727
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0004, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  18.458684210526332
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  40.927206185566995
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  53.17977528089889
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0005, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  36.25664646464646
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  67.24586000000002
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.57529787234044
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  20.583882352941185
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0009, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  34.14940816326531
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  69.14927368421056
+>>> arch=gfx950 fp8_dtype=torch.float8_e4m3fn (OCP e4m3fn)
+>>>  4GHHZ65OKT7A7CVQPQ3SA5KKNHXFIINFPMKBEE7UWL5BASBGEQWA
+>>>! logits_diff =  tensor(0.0007, device='cuda:0', dtype=torch.float64)
+non_ragged_k  time elapsed:  121.07631521739141
+paged_mqa_logits:
+    batch_size  next_n  heads  index_dim  avg_kv_length  non_ragged_k (TFLOPS)
+0          1.0     2.0   64.0      128.0        16384.0              41.504633
+1          1.0     2.0   64.0      128.0        32768.0              55.381895
+2          1.0     2.0   64.0      128.0        65536.0              62.012293
+3          2.0     2.0   64.0      128.0        16384.0              45.386738
+4          2.0     2.0   64.0      128.0        32768.0              74.678990
+5          2.0     2.0   64.0      128.0        65536.0              63.190502
+6          4.0     2.0   64.0      128.0        16384.0              50.506792
+7          4.0     2.0   64.0      128.0        32768.0              71.996094
+8          4.0     2.0   64.0      128.0        65536.0              78.700417
+9          1.0     1.0   64.0      128.0        65536.0              51.793285
+10         2.0     1.0   64.0      128.0        65536.0              49.202269
+11         4.0     1.0   64.0      128.0        65536.0              69.183855
+12         8.0     1.0   64.0      128.0        65536.0              76.097525
+finished 2026-09-06T00:20:31+00:00
+DONE_DSA_ATTN_T37

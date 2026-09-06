@@ -1,0 +1,20 @@
+# GLM-5.2 int8 MoE microbenchmark — aiter fused_moe (g1u1_int8quant, gfx950, MI355X VF, GPU0)
+# hidden=6144 inter=2048 E=256 topk=8 int8quant g1u1 silu
+# NOTE: checkAllclose FAILED at every M (atol=100, rtol=0.01) — int8 kernel runs fast but produces
+#       numerically wrong outputs on this aiter/triton stack. Latency values are valid timing,
+#       but correctness is broken. Flagged for the analysis.
+# asm_avg = aiter fused 2-stage MoE kernel latency; torch_avg = naive pytorch reference; uplift = torch/asm - 1
+M,asm_avg_us,torch_avg_us,uplift_pct,correctness
+1,194.28,39799.11,20385.3,FAILED
+2,204.43,40702.75,19810.1,FAILED
+4,235.28,42358.68,17903.8,FAILED
+8,374.58,45308.23,11995.8,FAILED
+16,652.11,50335.48,7618.9,FAILED
+32,1096.49,59159.19,5295.3,FAILED
+64,1422.08,65247.21,4488.1,FAILED
+128,1613.00,68104.59,4122.2,FAILED
+256,1651.09,70772.14,4186.4,FAILED
+512,1708.32,72032.71,4116.6,FAILED
+1024,2234.57,73841.27,3204.5,FAILED
+2048,3364.23,81498.05,2322.5,FAILED
+4096,3684.78,94260.35,2458.1,FAILED

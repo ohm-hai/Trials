@@ -1,0 +1,142 @@
+=== rocprofv2 FP8 MoE M=64,512 ===
+started 2026-09-05T21:34:42+00:00
+===== M=64 =====
+
+[0;31mWARNING: We are phasing out development and support for roctracer/rocprofiler/rocprof/rocprofv2 in favor of rocprofiler-sdk/rocprofv3 in upcoming ROCm releases. Going forward, only critical defect fixes will be addressed for older versions of profiling tools and libraries. We encourage all users to upgrade to the latest version, rocprofiler-sdk library and rocprofv3 tool, to ensure continued support and access to new features.[0m
+
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+ROCProfilerV2: Collecting the following counters:
+- TCC_HIT_sum
+- TCC_MISS_sum
+- SQ_WAVES
+Enabling Counter Collection
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+Results File: "/tmp/rp2_m64/pmc_1/results_3608871.csv"
+[W905 21:34:50.994693105 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] import [module_moe_sorting] under /scratch/aiter/aiter/jit/module_moe_sorting.so
+[aiter] import [module_quant] under /scratch/aiter/aiter/jit/module_quant.so
+[aiter] LoadKernel: _ZN5aiter48fmoe_bf16_pertokenFp8_g1u1_vs_silu_1tg_ps_32x512E hsaco: /scratch/aiter/hsa//gfx950/fmoe/silu/fmoe_bf16_pertokenFp8_g1u1_vs_silu_1tg_ps_32x512.co
+[aiter] [perf] use_g1u1=True token=64, quant=fp8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, torch_avg: 92187.54 us, asm_avg:  1475.53 us ...... uplift: 6147.8%[checkAllclose atol=100 rtol=0.01 [31mfailed![0m]
+    a    : torch.Size([64, 6144])
+           tensor([-1064., -1744.,   143.,   564.,   460.,  -486.,  -728.,   420.],
+       device='cuda:0', dtype=torch.bfloat16)
+    b    : torch.Size([64, 6144])
+           tensor([-1304.,  -912.,   -42.,   288.,  -324.,  -628.,  -856.,  -312.],
+       device='cuda:0', dtype=torch.bfloat16)
+    delta:
+           tensor([240., 832., 185., 276., 784., 142., 128., 732.], device='cuda:0',
+       dtype=torch.bfloat16)
+[aiter] -->max abs delta:4224.0, delta details: 80.6% (317104 of 393216) elements
+
+Running test: g1u1_fp8quant
+[BW  ] token=64, quant=fp8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, asm_bandwidth:     5.96TB/s
+
+The output path for the following counters: /tmp/rp2_m64/pmc_1
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+ROCProfilerV2: Collecting the following counters:
+- FETCH_SIZE
+- WRITE_SIZE
+Enabling Counter Collection
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+Results File: "/tmp/rp2_m64/pmc_2/results_3609783.csv"
+[W905 21:35:03.638426097 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] import [module_moe_sorting] under /scratch/aiter/aiter/jit/module_moe_sorting.so
+[aiter] import [module_quant] under /scratch/aiter/aiter/jit/module_quant.so
+[aiter] LoadKernel: _ZN5aiter48fmoe_bf16_pertokenFp8_g1u1_vs_silu_1tg_ps_32x512E hsaco: /scratch/aiter/hsa//gfx950/fmoe/silu/fmoe_bf16_pertokenFp8_g1u1_vs_silu_1tg_ps_32x512.co
+[aiter] [perf] use_g1u1=True token=64, quant=fp8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, torch_avg: 105329.15 us, asm_avg:  1458.22 us ...... uplift: 7123.1%[checkAllclose atol=100 rtol=0.01 [31mfailed![0m]
+    a    : torch.Size([64, 6144])
+           tensor([-406., -568., -608.,  396.,  161.,  928.,  418., -496.],
+       device='cuda:0', dtype=torch.bfloat16)
+    b    : torch.Size([64, 6144])
+           tensor([-848., -360., -736.,  524.,  360.,  556.,  548., -340.],
+       device='cuda:0', dtype=torch.bfloat16)
+    delta:
+           tensor([442., 208., 128., 128., 199., 372., 130., 156.], device='cuda:0',
+       dtype=torch.bfloat16)
+[aiter] -->max abs delta:3616.0, delta details: 81.0% (318694 of 393216) elements
+
+Running test: g1u1_fp8quant
+[BW  ] token=64, quant=fp8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, asm_bandwidth:     6.03TB/s
+
+The output path for the following counters: /tmp/rp2_m64/pmc_2
+--- M=64 parsed ---
+=== /tmp/rp2_m64 ===
+  topksoftmax_4x256x8_bf16                                dispatches=   1  L2hit=  0.00%  HIT=0 MISS=944  HBMfetch=-27KB HBMwrite=2KB
+  Kargs)                                                  dispatches= 104  L2hit=  0.00%  HIT=0 MISS=1048112  HBMfetch=-2409KB HBMwrite=3744KB
+  Kargs)                                                  dispatches= 104  L2hit=  0.00%  HIT=0 MISS=1820202  HBMfetch=-3627KB HBMwrite=42926KB
+  fmoe_bf16_pertokenFp8_g1u1_vs_silu_1tg_ps_32x512        dispatches= 104  L2hit=  0.00%  HIT=0 MISS=18754736  HBMfetch=1928461856KB HBMwrite=1277952KB
+===== M=512 =====
+
+[0;31mWARNING: We are phasing out development and support for roctracer/rocprofiler/rocprof/rocprofv2 in favor of rocprofiler-sdk/rocprofv3 in upcoming ROCm releases. Going forward, only critical defect fixes will be addressed for older versions of profiling tools and libraries. We encourage all users to upgrade to the latest version, rocprofiler-sdk library and rocprofv3 tool, to ensure continued support and access to new features.[0m
+
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+ROCProfilerV2: Collecting the following counters:
+- TCC_HIT_sum
+- TCC_MISS_sum
+- SQ_WAVES
+Enabling Counter Collection
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+Results File: "/tmp/rp2_m512/pmc_1/results_3610723.csv"
+[W905 21:35:15.886496085 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] import [module_moe_sorting] under /scratch/aiter/aiter/jit/module_moe_sorting.so
+[aiter] import [module_quant] under /scratch/aiter/aiter/jit/module_quant.so
+[aiter] LoadKernel: _ZN5aiter48fmoe_bf16_pertokenFp8_g1u1_vs_silu_1tg_ps_32x512E hsaco: /scratch/aiter/hsa//gfx950/fmoe/silu/fmoe_bf16_pertokenFp8_g1u1_vs_silu_1tg_ps_32x512.co
+[aiter] [perf] use_g1u1=True token=512, quant=fp8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, torch_avg: 101086.23 us, asm_avg:  1723.41 us ...... uplift: 5765.5%[checkAllclose atol=100 rtol=0.01 [31mfailed![0m]
+    a    : torch.Size([512, 6144])
+           tensor([ -370.0000,   560.0000,   197.0000,   -43.2500, -1096.0000,   996.0000,
+          163.0000,    11.8125], device='cuda:0', dtype=torch.bfloat16)
+    b    : torch.Size([512, 6144])
+           tensor([ 680., -264.,  312.,  151., -560.,  564.,  936.,  360.],
+       device='cuda:0', dtype=torch.bfloat16)
+    delta:
+           tensor([1048.,  824.,  115.,  194.,  536.,  432.,  772.,  348.],
+       device='cuda:0', dtype=torch.bfloat16)
+[aiter] -->max abs delta:6112.0, delta details: 79.4% (2498841 of 3145728) elements
+
+Running test: g1u1_fp8quant
+[BW  ] token=512, quant=fp8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, asm_bandwidth:     5.11TB/s
+
+The output path for the following counters: /tmp/rp2_m512/pmc_1
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+ROCProfilerV2: Collecting the following counters:
+- FETCH_SIZE
+- WRITE_SIZE
+Enabling Counter Collection
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+Results File: "/tmp/rp2_m512/pmc_2/results_3611601.csv"
+[W905 21:35:28.896502598 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] import [module_moe_sorting] under /scratch/aiter/aiter/jit/module_moe_sorting.so
+[aiter] import [module_quant] under /scratch/aiter/aiter/jit/module_quant.so
+[aiter] LoadKernel: _ZN5aiter48fmoe_bf16_pertokenFp8_g1u1_vs_silu_1tg_ps_32x512E hsaco: /scratch/aiter/hsa//gfx950/fmoe/silu/fmoe_bf16_pertokenFp8_g1u1_vs_silu_1tg_ps_32x512.co
+[aiter] [perf] use_g1u1=True token=512, quant=fp8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, torch_avg: 116510.96 us, asm_avg:  1714.99 us ...... uplift: 6693.7%[checkAllclose atol=100 rtol=0.01 [31mfailed![0m]
+    a    : torch.Size([512, 6144])
+           tensor([ 736.0000, -494.0000,  -65.5000,  560.0000,  116.5000,   45.7500,
+         -85.5000, 1128.0000], device='cuda:0', dtype=torch.bfloat16)
+    b    : torch.Size([512, 6144])
+           tensor([ 466.,  270.,  500.,  156., -268.,  193., -224.,  564.],
+       device='cuda:0', dtype=torch.bfloat16)
+    delta:
+           tensor([270., 764., 564., 404., 384., 147., 138., 564.], device='cuda:0',
+       dtype=torch.bfloat16)
+[aiter] -->max abs delta:7328.0, delta details: 81.6% (2565672 of 3145728) elements
+
+Running test: g1u1_fp8quant
+[BW  ] token=512, quant=fp8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, asm_bandwidth:     5.14TB/s
+
+The output path for the following counters: /tmp/rp2_m512/pmc_2
+--- M=512 parsed ---
+=== /tmp/rp2_m512 ===
+  topksoftmax_4x256x8_bf16                                dispatches=   1  L2hit=  0.00%  HIT=0 MISS=6586  HBMfetch=-83KB HBMwrite=16KB
+  Kargs)                                                  dispatches= 104  L2hit=  0.00%  HIT=0 MISS=4784520  HBMfetch=-8245KB HBMwrite=7072KB
+  Kargs)                                                  dispatches= 104  L2hit=  0.00%  HIT=0 MISS=7680712  HBMfetch=-9456KB HBMwrite=323236KB
+  fmoe_bf16_pertokenFp8_g1u1_vs_silu_1tg_ps_32x512        dispatches= 104  L2hit=  0.00%  HIT=0 MISS=28928401  HBMfetch=16495144456KB HBMwrite=10223616KB
+finished 2026-09-05T21:35:33+00:00
+DONE_ROCPROF_V2

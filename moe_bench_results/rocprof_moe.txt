@@ -1,0 +1,3 @@
+# rocprof input: L2 hit rate + HBM fetch/write for the fused MoE kernel.
+# rocprof reruns the app per pmc line; one group captures all three derived metrics.
+pmc : L2CacheHit FetchSize WriteSize

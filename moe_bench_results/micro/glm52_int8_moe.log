@@ -1,0 +1,317 @@
+=== GLM-5.2 int8quant MoE (g1u1) sweep ===
+hidden=6144 inter=2048 E=256 topk=8 int8quant g1u1 silu
+started 2026-09-05T21:31:37+00:00
+----- M=1 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:31:43.840877784 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] import [module_moe_sorting] under /scratch/aiter/aiter/jit/module_moe_sorting.so
+[aiter] import [module_smoothquant] under /scratch/aiter/aiter/jit/module_smoothquant.so
+[aiter] type hints mismatch, override to --> smoothquant_fwd(arg0: torch.Tensor, arg1: torch.Tensor, arg2: torch.Tensor, arg3: torch.Tensor) -> None
+[aiter] LoadKernel: _ZN5aiter49fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512E hsaco: /scratch/aiter/hsa//gfx950/fmoe/silu/fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512.co
+[aiter] [perf] use_g1u1=True token=1, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, torch_avg: 39799.11 us, asm_avg:   194.28 us ...... uplift: 20385.3%[checkAllclose atol=100 rtol=0.01 [31mfailed![0m]
+    a    : torch.Size([1, 6144])
+           tensor([  190., -1176.,  -564.,  -166.,  -796.,  -736.,  -664.,   216.],
+       device='cuda:0', dtype=torch.bfloat16)
+    b    : torch.Size([1, 6144])
+           tensor([   6.0000, -225.0000,  -31.2500, -624.0000, -528.0000,  140.0000,
+          -5.6250, -170.0000], device='cuda:0', dtype=torch.bfloat16)
+    delta:
+           tensor([184., 952., 532., 458., 268., 876., 660., 386.], device='cuda:0',
+       dtype=torch.bfloat16)
+[aiter] -->max abs delta:1896.0, delta details: 82.3% (5059 of 6144) elements
+
+Running test: g1u1_int8quant
+[BW  ] token=1, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, asm_bandwidth:    45.29TB/s
+----- M=2 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:31:51.327579202 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] import [module_moe_sorting] under /scratch/aiter/aiter/jit/module_moe_sorting.so
+[aiter] import [module_smoothquant] under /scratch/aiter/aiter/jit/module_smoothquant.so
+[aiter] type hints mismatch, override to --> smoothquant_fwd(arg0: torch.Tensor, arg1: torch.Tensor, arg2: torch.Tensor, arg3: torch.Tensor) -> None
+[aiter] LoadKernel: _ZN5aiter49fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512E hsaco: /scratch/aiter/hsa//gfx950/fmoe/silu/fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512.co
+[aiter] [perf] use_g1u1=True token=2, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, torch_avg: 40702.75 us, asm_avg:   204.43 us ...... uplift: 19810.1%[checkAllclose atol=100 rtol=0.01 [31mfailed![0m]
+    a    : torch.Size([2, 6144])
+           tensor([  984.,  -248.,  -732.,   308.,   326., -1040.,   676.,  -316.],
+       device='cuda:0', dtype=torch.bfloat16)
+    b    : torch.Size([2, 6144])
+           tensor([-224., -864., -278., 1024.,  508.,  -45.,  498.,  -86.],
+       device='cuda:0', dtype=torch.bfloat16)
+    delta:
+           tensor([1208.,  616.,  454.,  716.,  182.,  996.,  178.,  230.],
+       device='cuda:0', dtype=torch.bfloat16)
+[aiter] -->max abs delta:1944.0, delta details: 80.9% (9939 of 12288) elements
+
+Running test: g1u1_int8quant
+[BW  ] token=2, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, asm_bandwidth:    43.04TB/s
+----- M=4 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:31:58.825046204 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] import [module_moe_sorting] under /scratch/aiter/aiter/jit/module_moe_sorting.so
+[aiter] import [module_smoothquant] under /scratch/aiter/aiter/jit/module_smoothquant.so
+[aiter] type hints mismatch, override to --> smoothquant_fwd(arg0: torch.Tensor, arg1: torch.Tensor, arg2: torch.Tensor, arg3: torch.Tensor) -> None
+[aiter] LoadKernel: _ZN5aiter49fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512E hsaco: /scratch/aiter/hsa//gfx950/fmoe/silu/fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512.co
+[aiter] [perf] use_g1u1=True token=4, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, torch_avg: 42358.68 us, asm_avg:   235.28 us ...... uplift: 17903.8%[checkAllclose atol=100 rtol=0.01 [31mfailed![0m]
+    a    : torch.Size([4, 6144])
+           tensor([ 67.5000, 544.0000, 888.0000, 488.0000, 378.0000, 652.0000,  76.0000,
+        492.0000], device='cuda:0', dtype=torch.bfloat16)
+    b    : torch.Size([4, 6144])
+           tensor([ -55.0000,  360.0000,  268.0000,  636.0000,  864.0000, 1012.0000,
+         -66.5000,  338.0000], device='cuda:0', dtype=torch.bfloat16)
+    delta:
+           tensor([122.5000, 184.0000, 620.0000, 148.0000, 486.0000, 360.0000, 142.0000,
+        154.0000], device='cuda:0', dtype=torch.bfloat16)
+[aiter] -->max abs delta:2496.0, delta details: 80.0% (19657 of 24576) elements
+
+Running test: g1u1_int8quant
+[BW  ] token=4, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, asm_bandwidth:    37.40TB/s
+----- M=8 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:32:06.492595798 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] import [module_moe_sorting] under /scratch/aiter/aiter/jit/module_moe_sorting.so
+[aiter] import [module_smoothquant] under /scratch/aiter/aiter/jit/module_smoothquant.so
+[aiter] type hints mismatch, override to --> smoothquant_fwd(arg0: torch.Tensor, arg1: torch.Tensor, arg2: torch.Tensor, arg3: torch.Tensor) -> None
+[aiter] LoadKernel: _ZN5aiter49fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512E hsaco: /scratch/aiter/hsa//gfx950/fmoe/silu/fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512.co
+[aiter] [perf] use_g1u1=True token=8, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, torch_avg: 45308.23 us, asm_avg:   374.58 us ...... uplift: 11995.8%[checkAllclose atol=100 rtol=0.01 [31mfailed![0m]
+    a    : torch.Size([8, 6144])
+           tensor([-548., -784., -560., -181.,  126.,  494., -872.,  306.],
+       device='cuda:0', dtype=torch.bfloat16)
+    b    : torch.Size([8, 6144])
+           tensor([  360.0000,  -191.0000, -1008.0000,  -932.0000,   -54.5000,    69.0000,
+         -672.0000,   552.0000], device='cuda:0', dtype=torch.bfloat16)
+    delta:
+           tensor([908., 592., 448., 752., 180., 424., 200., 246.], device='cuda:0',
+       dtype=torch.bfloat16)
+[aiter] -->max abs delta:4256.0, delta details: 87.6% (43067 of 49152) elements
+
+Running test: g1u1_int8quant
+[BW  ] token=8, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, asm_bandwidth:    23.49TB/s
+----- M=16 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:32:14.506456367 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] import [module_moe_sorting] under /scratch/aiter/aiter/jit/module_moe_sorting.so
+[aiter] import [module_smoothquant] under /scratch/aiter/aiter/jit/module_smoothquant.so
+[aiter] type hints mismatch, override to --> smoothquant_fwd(arg0: torch.Tensor, arg1: torch.Tensor, arg2: torch.Tensor, arg3: torch.Tensor) -> None
+[aiter] LoadKernel: _ZN5aiter49fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512E hsaco: /scratch/aiter/hsa//gfx950/fmoe/silu/fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512.co
+[aiter] [perf] use_g1u1=True token=16, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, torch_avg: 50335.48 us, asm_avg:   652.11 us ...... uplift: 7618.9%[checkAllclose atol=100 rtol=0.01 [31mfailed![0m]
+    a    : torch.Size([16, 6144])
+           tensor([-1000.0000,  1528.0000,  -143.0000,   336.0000, -1320.0000,   -28.8750,
+         -127.5000,   772.0000], device='cuda:0', dtype=torch.bfloat16)
+    b    : torch.Size([16, 6144])
+           tensor([-328., 1176.,  600.,  900.,  170., -426., -648., 1040.],
+       device='cuda:0', dtype=torch.bfloat16)
+    delta:
+           tensor([ 672.,  352.,  744.,  564., 1488.,  398.,  520.,  268.],
+       device='cuda:0', dtype=torch.bfloat16)
+[aiter] -->max abs delta:3024.0, delta details: 82.9% (81523 of 98304) elements
+
+Running test: g1u1_int8quant
+[BW  ] token=16, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, asm_bandwidth:    13.49TB/s
+----- M=32 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:32:23.344227596 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] import [module_moe_sorting] under /scratch/aiter/aiter/jit/module_moe_sorting.so
+[aiter] import [module_smoothquant] under /scratch/aiter/aiter/jit/module_smoothquant.so
+[aiter] type hints mismatch, override to --> smoothquant_fwd(arg0: torch.Tensor, arg1: torch.Tensor, arg2: torch.Tensor, arg3: torch.Tensor) -> None
+[aiter] LoadKernel: _ZN5aiter49fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512E hsaco: /scratch/aiter/hsa//gfx950/fmoe/silu/fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512.co
+[aiter] [perf] use_g1u1=True token=32, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, torch_avg: 59159.19 us, asm_avg:  1096.49 us ...... uplift: 5295.3%[checkAllclose atol=100 rtol=0.01 [31mfailed![0m]
+    a    : torch.Size([32, 6144])
+           tensor([  604.,   996.,  -552.,  1208.,   660., -1328.,   952.,  -178.],
+       device='cuda:0', dtype=torch.bfloat16)
+    b    : torch.Size([32, 6144])
+           tensor([ -524.,   376.,   -63.,   916.,  1216.,  -188.,  1088., -1152.],
+       device='cuda:0', dtype=torch.bfloat16)
+    delta:
+           tensor([1128.,  620.,  488.,  292.,  556., 1136.,  136.,  976.],
+       device='cuda:0', dtype=torch.bfloat16)
+[aiter] -->max abs delta:3840.0, delta details: 81.7% (160705 of 196608) elements
+
+Running test: g1u1_int8quant
+[BW  ] token=32, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, asm_bandwidth:     8.02TB/s
+----- M=64 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:32:32.708074338 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] import [module_moe_sorting] under /scratch/aiter/aiter/jit/module_moe_sorting.so
+[aiter] import [module_smoothquant] under /scratch/aiter/aiter/jit/module_smoothquant.so
+[aiter] type hints mismatch, override to --> smoothquant_fwd(arg0: torch.Tensor, arg1: torch.Tensor, arg2: torch.Tensor, arg3: torch.Tensor) -> None
+[aiter] LoadKernel: _ZN5aiter49fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512E hsaco: /scratch/aiter/hsa//gfx950/fmoe/silu/fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512.co
+[aiter] [perf] use_g1u1=True token=64, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, torch_avg: 65247.21 us, asm_avg:  1422.08 us ...... uplift: 4488.1%[checkAllclose atol=100 rtol=0.01 [31mfailed![0m]
+    a    : torch.Size([64, 6144])
+           tensor([-532.0000,  704.0000, -280.0000, -318.0000,   34.7500,  544.0000,
+         116.0000,  432.0000], device='cuda:0', dtype=torch.bfloat16)
+    b    : torch.Size([64, 6144])
+           tensor([-322.,  944., -420.,  380., -146.,  314., -116.,  768.],
+       device='cuda:0', dtype=torch.bfloat16)
+    delta:
+           tensor([210., 240., 140., 696., 181., 230., 232., 336.], device='cuda:0',
+       dtype=torch.bfloat16)
+[aiter] -->max abs delta:4480.0, delta details: 81.9% (321964 of 393216) elements
+
+Running test: g1u1_int8quant
+[BW  ] token=64, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, asm_bandwidth:     6.19TB/s
+----- M=128 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:32:42.670019954 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] import [module_moe_sorting] under /scratch/aiter/aiter/jit/module_moe_sorting.so
+[aiter] import [module_smoothquant] under /scratch/aiter/aiter/jit/module_smoothquant.so
+[aiter] type hints mismatch, override to --> smoothquant_fwd(arg0: torch.Tensor, arg1: torch.Tensor, arg2: torch.Tensor, arg3: torch.Tensor) -> None
+[aiter] LoadKernel: _ZN5aiter49fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512E hsaco: /scratch/aiter/hsa//gfx950/fmoe/silu/fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512.co
+[aiter] [perf] use_g1u1=True token=128, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, torch_avg: 68104.59 us, asm_avg:  1613.00 us ...... uplift: 4122.2%[checkAllclose atol=100 rtol=0.01 [31mfailed![0m]
+    a    : torch.Size([128, 6144])
+           tensor([  828.0000,   972.0000,    98.5000, -1864.0000,  1064.0000,  -432.0000,
+         -516.0000, -2032.0000], device='cuda:0', dtype=torch.bfloat16)
+    b    : torch.Size([128, 6144])
+           tensor([  296.0000,  1376.0000,    -3.5000, -2024.0000,   592.0000,  -304.0000,
+          478.0000, -1368.0000], device='cuda:0', dtype=torch.bfloat16)
+    delta:
+           tensor([532., 404., 102., 160., 472., 128., 992., 664.], device='cuda:0',
+       dtype=torch.bfloat16)
+[aiter] -->max abs delta:4704.0, delta details: 82.5% (649053 of 786432) elements
+
+Running test: g1u1_int8quant
+[BW  ] token=128, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, asm_bandwidth:     5.46TB/s
+----- M=256 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:32:52.973746951 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] import [module_moe_sorting] under /scratch/aiter/aiter/jit/module_moe_sorting.so
+[aiter] import [module_smoothquant] under /scratch/aiter/aiter/jit/module_smoothquant.so
+[aiter] type hints mismatch, override to --> smoothquant_fwd(arg0: torch.Tensor, arg1: torch.Tensor, arg2: torch.Tensor, arg3: torch.Tensor) -> None
+[aiter] LoadKernel: _ZN5aiter49fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512E hsaco: /scratch/aiter/hsa//gfx950/fmoe/silu/fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512.co
+[aiter] [perf] use_g1u1=True token=256, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, torch_avg: 70772.14 us, asm_avg:  1651.09 us ...... uplift: 4186.4%[checkAllclose atol=100 rtol=0.01 [31mfailed![0m]
+    a    : torch.Size([256, 6144])
+           tensor([ 244.0000,   53.0000,  478.0000,  117.5000, -560.0000,  588.0000,
+         324.0000,   85.5000], device='cuda:0', dtype=torch.bfloat16)
+    b    : torch.Size([256, 6144])
+           tensor([-520.0000, 1072.0000,  956.0000, -298.0000,  -27.2500, -964.0000,
+        -220.0000,  700.0000], device='cuda:0', dtype=torch.bfloat16)
+    delta:
+           tensor([ 764., 1020.,  478.,  416.,  532., 1552.,  544.,  616.],
+       device='cuda:0', dtype=torch.bfloat16)
+[aiter] -->max abs delta:5504.0, delta details: 79.9% (1257264 of 1572864) elements
+
+Running test: g1u1_int8quant
+[BW  ] token=256, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, asm_bandwidth:     5.33TB/s
+----- M=512 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:33:02.050663193 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] import [module_moe_sorting] under /scratch/aiter/aiter/jit/module_moe_sorting.so
+[aiter] import [module_smoothquant] under /scratch/aiter/aiter/jit/module_smoothquant.so
+[aiter] type hints mismatch, override to --> smoothquant_fwd(arg0: torch.Tensor, arg1: torch.Tensor, arg2: torch.Tensor, arg3: torch.Tensor) -> None
+[aiter] LoadKernel: _ZN5aiter49fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512E hsaco: /scratch/aiter/hsa//gfx950/fmoe/silu/fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512.co
+[aiter] [perf] use_g1u1=True token=512, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, torch_avg: 72032.71 us, asm_avg:  1708.32 us ...... uplift: 4116.6%[checkAllclose atol=100 rtol=0.01 [31mfailed![0m]
+    a    : torch.Size([512, 6144])
+           tensor([ -316.,   692.,  -182.,  -704.,   552.,  -788.,   560., -1216.],
+       device='cuda:0', dtype=torch.bfloat16)
+    b    : torch.Size([512, 6144])
+           tensor([ -466.,  1024.,  -520.,  -444.,   304.,  -328.,   430., -1656.],
+       device='cuda:0', dtype=torch.bfloat16)
+    delta:
+           tensor([150., 332., 338., 260., 248., 460., 130., 440.], device='cuda:0',
+       dtype=torch.bfloat16)
+[aiter] -->max abs delta:4928.0, delta details: 79.2% (2491756 of 3145728) elements
+
+Running test: g1u1_int8quant
+[BW  ] token=512, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, asm_bandwidth:     5.16TB/s
+----- M=1024 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:33:13.406347534 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] import [module_moe_sorting] under /scratch/aiter/aiter/jit/module_moe_sorting.so
+[aiter] import [module_smoothquant] under /scratch/aiter/aiter/jit/module_smoothquant.so
+[aiter] type hints mismatch, override to --> smoothquant_fwd(arg0: torch.Tensor, arg1: torch.Tensor, arg2: torch.Tensor, arg3: torch.Tensor) -> None
+[aiter] LoadKernel: _ZN5aiter49fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512E hsaco: /scratch/aiter/hsa//gfx950/fmoe/silu/fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512.co
+[aiter] [perf] use_g1u1=True token=1024, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, torch_avg: 73841.27 us, asm_avg:  2234.57 us ...... uplift: 3204.5%[checkAllclose atol=100 rtol=0.01 [31mfailed![0m]
+    a    : torch.Size([1024, 6144])
+           tensor([   52.2500,   137.0000,   162.0000,  -458.0000,  -466.0000, -1248.0000,
+          314.0000,  -157.0000], device='cuda:0', dtype=torch.bfloat16)
+    b    : torch.Size([1024, 6144])
+           tensor([-320., -224.,  388.,    4., -584., -984.,  101.,  336.],
+       device='cuda:0', dtype=torch.bfloat16)
+    delta:
+           tensor([372., 360., 226., 462., 118., 264., 213., 492.], device='cuda:0',
+       dtype=torch.bfloat16)
+[aiter] -->max abs delta:5696.0, delta details: 78.9% (4965059 of 6291456) elements
+
+Running test: g1u1_int8quant
+[BW  ] token=1024, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, asm_bandwidth:     3.95TB/s
+----- M=2048 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:33:23.699743167 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] import [module_moe_sorting] under /scratch/aiter/aiter/jit/module_moe_sorting.so
+[aiter] import [module_smoothquant] under /scratch/aiter/aiter/jit/module_smoothquant.so
+[aiter] type hints mismatch, override to --> smoothquant_fwd(arg0: torch.Tensor, arg1: torch.Tensor, arg2: torch.Tensor, arg3: torch.Tensor) -> None
+[aiter] LoadKernel: _ZN5aiter49fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512E hsaco: /scratch/aiter/hsa//gfx950/fmoe/silu/fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512.co
+[aiter] [perf] use_g1u1=True token=2048, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, torch_avg: 81498.05 us, asm_avg:  3364.23 us ...... uplift: 2322.5%[checkAllclose atol=100 rtol=0.01 [31mfailed![0m]
+    a    : torch.Size([2048, 6144])
+           tensor([-1528.0000,   592.0000,   -40.5000,   776.0000,  -432.0000,  -174.0000,
+          106.0000,   496.0000], device='cuda:0', dtype=torch.bfloat16)
+    b    : torch.Size([2048, 6144])
+           tensor([-784.0000,  118.0000, -800.0000, 1072.0000,  147.0000, -692.0000,
+         -62.5000,   -4.5000], device='cuda:0', dtype=torch.bfloat16)
+    delta:
+           tensor([744., 474., 760., 296., 580., 520., 168., 500.], device='cuda:0',
+       dtype=torch.bfloat16)
+[aiter] -->max abs delta:5952.0, delta details: 79.8% (10040416 of 12582912) elements
+
+Running test: g1u1_int8quant
+[BW  ] token=2048, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, asm_bandwidth:     2.63TB/s
+----- M=4096 -----
+[aiter] import [module_aiter_core] under /scratch/aiter/aiter/jit/module_aiter_core.so
+/scratch/aiter/aiter/ops/triton/gluon/__init__.py:16: UserWarning: [aiter] AITER_USE_SYSTEM_TRITON=1: aiter gluon kernels require triton>=3.6.0, found 3.4.0. Please install a compatible version via .github/scripts/install_triton.sh, otherwise unexpected errors may occur.
+  warnings.warn(
+[aiter] LoadKernel: _ZN5aiter24topksoftmax_4x256x8_bf16E hsaco: /scratch/aiter/hsa//gfx950/topksoftmax/topksoftmax_4x256x8_bf16.co
+[W905 21:33:34.309173156 collection.cpp:1123] Warning: ROCTracer produced duplicate flow start: 1 (function operator())
+[aiter] import [module_moe_sorting] under /scratch/aiter/aiter/jit/module_moe_sorting.so
+[aiter] import [module_smoothquant] under /scratch/aiter/aiter/jit/module_smoothquant.so
+[aiter] type hints mismatch, override to --> smoothquant_fwd(arg0: torch.Tensor, arg1: torch.Tensor, arg2: torch.Tensor, arg3: torch.Tensor) -> None
+[aiter] LoadKernel: _ZN5aiter49fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512E hsaco: /scratch/aiter/hsa//gfx950/fmoe/silu/fmoe_bf16_pertokenInt8_g1u1_vs_silu_1tg_ps_32x512.co
+[aiter] [perf] use_g1u1=True token=4096, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, torch_avg: 94260.35 us, asm_avg:  3684.78 us ...... uplift: 2458.1%[checkAllclose atol=100 rtol=0.01 [31mfailed![0m]
+    a    : torch.Size([4096, 6144])
+           tensor([ 166.0000,  342.0000,  340.0000,   70.5000, -218.0000,  544.0000,
+         440.0000, -600.0000], device='cuda:0', dtype=torch.bfloat16)
+    b    : torch.Size([4096, 6144])
+           tensor([  368.0000,   720.0000,  -584.0000,   540.0000,   -66.0000,  -148.0000,
+         -121.5000, -1472.0000], device='cuda:0', dtype=torch.bfloat16)
+    delta:
+           tensor([202., 378., 924., 470., 152., 692., 560., 872.], device='cuda:0',
+       dtype=torch.bfloat16)
+[aiter] -->max abs delta:5984.0, delta details: 79.8% (20073251 of 25165824) elements
+
+Running test: g1u1_int8quant
+[BW  ] token=4096, quant=int8quant, model_dim=6144, inter_dim=2048, E=256, shared_E=0, topk=8, dtype: torch.bfloat16, asm_bandwidth:     2.41TB/s
+finished 2026-09-05T21:33:39+00:00
+DONE_GLM52_INT8_SWEEP
