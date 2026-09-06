@@ -46,7 +46,15 @@ logger = logging.getLogger(__name__)
 _USE_MOE_DECODE_MEGAKERNEL = get_bool_env_var(
     "SGLANG_MOE_DECODE_MEGAKERNEL", "false"
 )
-# Decode batch size threshold: routes to megakernel only when num_tokens <= this.
+# Decode batch size window: routes to megakernel only when
+# _MOE_DECODE_MEGAKERNEL_MIN_TOKENS <= num_tokens <= _MOE_DECODE_MEGAKERNEL_MAX_TOKENS.
+# Below MIN, falls back to the opaque aiter.fused_moe hsaco (the L2-pinning lever
+# gives no benefit at tiny bs because each expert is used ~once -> no reuse, and
+# the Triton megakernel's codegen/launch overhead loses to hand-tuned hsaco).
+# Above MAX, keeps hsaco for prefill (large-M, throughput-bound).
+_MOE_DECODE_MEGAKERNEL_MIN_TOKENS = get_int_env_var(
+    "SGLANG_MOE_DECODE_MEGAKERNEL_MIN_TOKENS", 64
+)
 _MOE_DECODE_MEGAKERNEL_MAX_TOKENS = get_int_env_var(
     "SGLANG_MOE_DECODE_MEGAKERNEL_MAX_TOKENS", 1024
 )
@@ -78,6 +86,11 @@ def _moe_decode_megakernel_full(
     fixed N-slice of every expert; per-XCD weight slice K*(N/8) fp8 fits the 4 MB
     private L2 -> high L2 residency in decode. Single launch per stage, no
     pid_remap table, no extra dispatches/copies. Bit-equivalent to round-robin.
+
+    Adaptive BLOCK_M: at tiny M (bs<=128) a smaller BM is used so (a) less
+    padding per block, (b) more blocks -> better XCD occupancy, (c) experts with
+    k>BM tokens form multiple reusing blocks -> L2 weight reuse. Tight
+    routing caps npm to real work (no over-padding).
     """
     from sglang.srt.layers.moe.moe_runner.triton_utils.moe_align_block_size import (
         moe_align_block_size,
@@ -91,9 +104,12 @@ def _moe_decode_megakernel_full(
     E = w13_fp8.shape[0]
     N2 = w13_fp8.shape[1]            # 2 * N_inter (gate-up width)
     N_inter = w2_fp8.shape[2]
-    BM = _MOE_DECODE_MEGA_BLOCK_M
+    # Megakernel band is bs>=_MOE_DECODE_MEGAKERNEL_MIN_TOKENS (validated in
+    # Phase 6-7); the over-padding from moe_align_block_size is proportionate
+    # here, so use the tuned BM=128 (best L2 reuse + MMA occupancy).
+    BM = _MOE_DECODE_MEGA_BLOCK_M  # 128
 
-    # Routing: sort token-expert pairs by expert (production helper).
+    # Routing: production moe_align_block_size (fast CUDA sort).
     sorted_token_ids, expert_ids, num_tokens_post_padded = moe_align_block_size(
         topk_ids, BM, E
     )
@@ -411,7 +427,7 @@ class AiterRunnerCore(MoeRunnerCore):
         num_tokens = runner_input.hidden_states.shape[0]
         if (
             _USE_MOE_DECODE_MEGAKERNEL
-            and num_tokens <= _MOE_DECODE_MEGAKERNEL_MAX_TOKENS
+            and _MOE_DECODE_MEGAKERNEL_MIN_TOKENS <= num_tokens <= _MOE_DECODE_MEGAKERNEL_MAX_TOKENS
             and runner_input.quant_type == AiterQuantType.PER_128X128
             and quant_info.b13 is None
             and quant_info.b2 is None
