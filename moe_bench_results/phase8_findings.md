@@ -80,10 +80,14 @@ achievable with the L2-pinning lever** (no expert reuse); only a single-launch
 one launch (Fleet-style, eliminating all launch overhead) could — deferred as
 research-grade Phase 10.
 
-## Open production concern: npm-constexpr JIT
+## Open production concern: npm-constexpr JIT — FIXED
 
-`NPM` is a `tl.constexpr` in the megakernel, so every unique routing batch (npm
-varies with the token-to-expert distribution) triggers a ~40s JIT. This is a
-real serving stall and must be fixed before production: make `NPM` a runtime
-argument (loop bound via a runtime `tl.cdiv`-style guard) or pad/npm-bucket to a
-small set of compiled variants.
+`NPM` was a `tl.constexpr`, so every unique routing batch (npm varies with the
+token-to-expert distribution) triggered a ~40s JIT. **Fixed**: `NPM` is now a
+*runtime* argument in both `_moe_decode_mega_kernel` (base) and
+`_moe_decode_mega_kernel_fused`. The grid is launched with the runtime `npm`
+(`grid = (NUM_XCD * npm * nbps,)`), so one compiled variant serves all batch
+sizes. Verified (`phase8e_runtime_npm.py`): shape A npm=259 first call 2ms, shape
+B npm=263 (different npm) first call 2.1ms — no per-npm JIT. Correctness
+preserved (`phase8e_correctness2.py`): err 0.165-0.205 vs bf16 ref, identical to
+pre-change.

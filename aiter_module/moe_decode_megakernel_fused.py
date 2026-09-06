@@ -22,22 +22,22 @@ NUM_XCD = 8
 def _moe_decode_mega_kernel_fused(
     a_ptr, b_ptr, a_scale_ptr, b_scale_ptr,
     c_ptr, sti_ptr, eid_ptr, nvt,
-    N, K, EM,
+    N, K, EM, npm,
     sam, sak, sbe, sbk, sbn, scm, scn,
     sasm, sask, sbse, sbsn, sbsk,
     out_ptr, tw_ptr, som, sok,
     BM: tl.constexpr, BN: tl.constexpr, BK: tl.constexpr,
     GM: tl.constexpr, NX: tl.constexpr, TOPK: tl.constexpr,
-    NBPS: tl.constexpr, NPM: tl.constexpr, GN: tl.constexpr, GK: tl.constexpr,
+    NBPS: tl.constexpr, GN: tl.constexpr, GK: tl.constexpr,
     FUSED_SILU: tl.constexpr, FUSED_UNPERMUTE: tl.constexpr,
 ):
     pid = tl.program_id(0)
-    xcd = pid // (NPM * NBPS)
-    local = pid % (NPM * NBPS)
+    xcd = pid // (npm * NBPS)
+    local = pid % (npm * NBPS)
     pid_m = local // NBPS
     nb_in_slice = local % NBPS
     pid_n = xcd * NBPS + nb_in_slice
-    if pid_m >= NPM:
+    if pid_m >= npm:
         return
     oti = (pid_m * BM + tl.arange(0, BM)).to(tl.int64)
     ot = tl.load(sti_ptr + oti)
@@ -109,14 +109,14 @@ def _launch(a_fp8, b_fp8, a_scale, b_scale, c_ptr,
     grid = (NUM_XCD * npm * nbps,)
     _moe_decode_mega_kernel_fused[grid](
         a_fp8, b_fp8, a_scale, b_scale, c_ptr,
-        sti, eid, nvt, N, K, E,
+        sti, eid, nvt, N, K, E, npm,
         a_fp8.stride(0), a_fp8.stride(1),
         b_fp8.stride(0), b_fp8.stride(2), b_fp8.stride(1),
         scm, scn,
         a_scale.stride(0), a_scale.stride(1),
         b_scale.stride(0), b_scale.stride(1), b_scale.stride(2),
         out_ptr, tw_ptr, som, sok,
-        BM, BN, BK, 8, NUM_XCD, TOPK, nbps, npm, 128, 128,
+        BM, BN, BK, 8, NUM_XCD, TOPK, nbps, 128, 128,
         fused_silu, fused_unpermute,
     )
 
