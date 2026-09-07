@@ -44,7 +44,8 @@ def _moe_decode_mega_kernel_fused(
     tm = ot < nvt
     ot = tl.where(tm, ot, 0)
     oe = tl.load(eid_ptr + pid_m.to(tl.int64)).to(tl.int64)
-    oe = tl.minimum(oe, EM - 1)
+    # Defensive clamp both sides (see base kernel for rationale: garbage tail).
+    oe = tl.maximum(tl.minimum(oe, EM - 1), 0)
     obn = (pid_n * BN + tl.arange(0, BN).to(tl.int64)) % N
     ok = tl.arange(0, BK)
     # Stage-1: a = hidden (M rows, original-token order) -> index by ot//TOPK.

@@ -25,37 +25,48 @@ NUM_XCD = 8
 @triton.jit
 def _moe_decode_mega_kernel(
     a_ptr, b_ptr, a_scale_ptr, b_scale_ptr, c_ptr, sti_ptr, eid_ptr, nvt,
-    N, K, EM,
+    N, K, EM, npm,
     sam, sak, sbe, sbk, sbn, scm, scn,
     sasm, sask, sbse, sbsn, sbsk,
     BM: tl.constexpr, BN: tl.constexpr, BK: tl.constexpr,
     GM: tl.constexpr, NX: tl.constexpr, TOPK: tl.constexpr,
-    NBPS: tl.constexpr, NPM: tl.constexpr, GN: tl.constexpr, GK: tl.constexpr,
+    NBPS: tl.constexpr, GN: tl.constexpr, GK: tl.constexpr,
+    A_BY_SORTED: tl.constexpr = 0,
 ):
     pid = tl.program_id(0)
-    xcd = pid // (NPM * NBPS)
-    local = pid % (NPM * NBPS)
+    xcd = pid // (npm * NBPS)
+    local = pid % (npm * NBPS)
     pid_m = local // NBPS
     nb_in_slice = local % NBPS
     pid_n = xcd * NBPS + nb_in_slice
-    if pid_m >= NPM:
+    if pid_m >= npm:
         return
     oti = (pid_m * BM + tl.arange(0, BM)).to(tl.int64)
     ot = tl.load(sti_ptr + oti)
     tm = ot < nvt
     ot = tl.where(tm, ot, 0)
     oe = tl.load(eid_ptr + pid_m.to(tl.int64)).to(tl.int64)
-    # moe_align_block_size uses expert_ids = E as a sentinel for fully-padded
-    # blocks; clamp to E-1 to avoid OOB reads of b (padding rows are masked
-    # out on store anyway, so the garbage is never written).
-    oe = tl.minimum(oe, EM - 1)
+    # Defensive clamp on BOTH sides: moe_align_block_size allocates expert_ids
+    # with torch.empty at max capacity; the tail beyond num_tokens_post_padded
+    # is uninitialized garbage (often huge negative int32). A negative oe ->
+    # b_ptr + negative offset -> OOB GPU read -> queue fault / hang. Clamp
+    # lower to 0 and upper to E-1 (the E sentinel). Garbage/padding rows are
+    # masked out on store (tm), so clamped garbage never affects output.
+    oe = tl.maximum(tl.minimum(oe, EM - 1), 0)
     obn = (pid_n * BN + tl.arange(0, BN).to(tl.int64)) % N
     ok = tl.arange(0, BK)
-    ap = a_ptr + (ot[:, None] // TOPK * sam + ok[None, :] * sak)
+    # Stage-1: a = hidden (M rows, original-token order) -> index a by ot//TOPK.
+    # Stage-2: a = inter (npm*BM rows, SORTED order) -> index a by sorted pos oti.
+    if A_BY_SORTED:
+        a_row = oti
+        a_scale_row = oti
+    else:
+        a_row = ot // TOPK
+        a_scale_row = ot // TOPK
+    ap = a_ptr + (a_row[:, None] * sam + ok[None, :] * sak)
     bp = b_ptr + (oe * sbe + ok[:, None] * sbk + obn[None, :] * sbn)
-    a_tok = ot // TOPK
     offs_bsn = obn // GN
-    a_scale_ptrs = a_scale_ptr + a_tok * sasm
+    a_scale_ptrs = a_scale_ptr + a_scale_row * sasm
     b_scale_ptrs = b_scale_ptr + oe * sbse + offs_bsn * sbsn
     acc = tl.zeros((BM, BN), dtype=tl.float32)
     for kk in range(0, tl.cdiv(K, BK)):
@@ -88,6 +99,7 @@ def moe_decode_megakernel_stage1(
     block_k: int = 128,
     group_n: int = 128,
     group_k: int = 128,
+    a_by_sorted: bool = False,       # True for stage-2 (inter is in sorted order)
 ) -> None:
     M, K = a_fp8.shape
     E, N, _ = b_fp8.shape
@@ -101,11 +113,11 @@ def moe_decode_megakernel_stage1(
     _moe_decode_mega_kernel[grid](
         a_fp8, b_fp8, a_scale, b_scale, out,
         sorted_token_ids, expert_ids, nvt,
-        N, K, E,
+        N, K, E, npm,
         a_fp8.stride(0), a_fp8.stride(1),
         b_fp8.stride(0), b_fp8.stride(2), b_fp8.stride(1),   # sbe, sbk, sbn
         out.stride(0), out.stride(1),
         a_scale.stride(0), a_scale.stride(1),
         b_scale.stride(0), b_scale.stride(1), b_scale.stride(2),
-        block_m, block_n, block_k, 8, NUM_XCD, topk, nbps, npm, group_n, group_k,
+        block_m, block_n, block_k, 8, NUM_XCD, topk, nbps, group_n, group_k, a_by_sorted,
     )

@@ -113,7 +113,14 @@ def _moe_decode_megakernel_full(
     sorted_token_ids, expert_ids, num_tokens_post_padded = moe_align_block_size(
         topk_ids, BM, E
     )
-    npm = expert_ids.shape[0]
+    # Use the VALID block count (num_tokens_post_padded // BM), NOT the tensor
+    # capacity (expert_ids.shape[0]). moe_align_block_size allocates expert_ids
+    # and sorted_token_ids with torch.empty at MAX capacity; the tail beyond
+    # num_tokens_post_padded is UNINITIALIZED garbage (often huge negative
+    # int32). Reading that tail -> OOB GPU read (b_ptr + negative offset) ->
+    # queue fault / hang. ntp is always a multiple of BM (each expert is padded
+    # to a multiple of BM), so this division is exact.
+    npm = num_tokens_post_padded.item() // BM
 
     # Stage-1 activation: per-token-group fp8 quant (block_k=128).
     if hidden_states.dtype == torch.float8_e4m3fn:
@@ -151,6 +158,7 @@ def _moe_decode_megakernel_full(
         a2_fp8, w2_fp8, a2_scale, w2_scale,
         sorted_token_ids, expert_ids, gemm2, topk,
         block_m=BM, block_n=_MOE_DECODE_MEGA_BLOCK_N, block_k=_MOE_DECODE_MEGA_BLOCK_K,
+        a_by_sorted=True,
     )
 
     # Router weight + unpermute. gemm2 is indexed by sorted position; scatter
