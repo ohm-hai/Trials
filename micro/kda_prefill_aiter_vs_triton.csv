@@ -1,0 +1,12 @@
+# KDA prefill: aiter FlashKDA vs sglang Triton chunk_kda (gfx950, MI355X VF, GPU0)
+# Kimi-K3 shape: H=HV=12 K=V=128 safe-gate lower_bound=-5.0 varlen B=1
+# aiter = chunk_kimi_delta_attn (state_v_first=True, FlashKDA two-kernel path)
+# triton = sglang kernels/ops/attention/fla/kda.chunk_kda (beta_is_raw=True)
+# Correctness VERIFIED: max_abs_diff=0.0007 mean_abs_diff=0.00001 (both outputs finite) at T=2048.
+#   (allclose with atol/rtol=2e-2 is False only due to rtol on near-zero values; numerically equivalent.)
+T,aiter_us,triton_us,speedup,max_abs_diff
+512,148.42,219.40,1.48,0.0007
+1024,164.70,237.34,1.44,0.0007
+2048,210.35,323.23,1.54,0.0007
+4096,267.48,396.82,1.48,0.0007
+8192,345.29,562.30,1.63,0.0007

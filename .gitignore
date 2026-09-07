@@ -1,0 +1,9 @@
+gpucore.*
+__pycache__/
+*.pyc
+*.so
+*.hsaco
+*.log
+e2e/server*.log
+e2e/*.stdout
+/tmp/

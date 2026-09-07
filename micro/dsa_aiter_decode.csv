@@ -1,0 +1,11 @@
+# DSA decode via aiter mla_decode_fwd (gfx950, MI355X VF, GPU0)
+# GLM-5.2 shape: num_heads=64 head_dim=256 index_topk=2048 pages/req page_size=1 bf16 KV
+# Non-persistent num_kv_splits=1 path. B>=32 CRASHES (memory access fault) -- the fixed-shape
+# qseqlen1 kernel has a batch limit. Persistent path fails: kn_mla_reduce_v1 does NOT support
+# (num_heads=64, head_dim=256) -- built for DeepSeek head_dim=576. tilelang DSA backend broken on this stack.
+B,med_us
+1,116.71
+2,117.21
+4,116.45
+8,118.01
+16,119.93

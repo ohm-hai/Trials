@@ -1,0 +1,18 @@
+# GLM-5.2 FP8 MoE microbenchmark — aiter fused_moe (g1u1_fp8quant, gfx950, MI355X VF, GPU0)
+# hidden=6144 inter=2048 E=256 topk=8 silu  (single-GPU, TP=1 shard of the 256 experts)
+# asm_avg = aiter fused 2-stage MoE kernel latency; asm_bandwidth = effective HBM bandwidth
+# torch_avg = naive pytorch reference (not the serving path)
+M,asm_avg_us,asm_bandwidth_TBs,torch_avg_us
+1,186.27,47.24,42361.05
+2,199.77,44.04,43231.91
+4,231.05,38.08,45407.31
+8,341.00,25.80,47705.11
+16,670.54,13.12,52643.98
+32,1030.70,8.54,61519.58
+64,1440.97,6.11,70320.89
+128,1613.35,5.46,69611.07
+256,1644.20,5.35,74787.72
+512,1700.65,5.18,76294.40
+1024,2232.65,3.95,77821.24
+2048,3308.90,2.67,83042.06
+4096,3661.48,2.43,94293.73
